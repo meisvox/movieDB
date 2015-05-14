@@ -31,33 +31,33 @@ CREATE TABLE ACTOR(
 	fname VARCHAR(20) NOT NULL,
 	lname VARCAHR(20) NOT NULL,
 	a_DOB DATE,
-	gender CHAR CHECK(gener = 'M' OR gender = 'F'),
+	gender CHAR CHECK(gender = 'M' OR gender = 'F'),
 	a_nationality VARCHAR(20),
 	a_active_form VARCHAR(20),
 	PRIMARY KEY(a_ID)
 );
 
 CREATE TABLE DIRECTOR(
-	d_ID INT NOT NULL CHECK(a_ID > 0 AND a_ID <= 99999),
+	d_ID INT NOT NULL CHECK(d_ID > 0 AND d_ID <= 99999),
 	fname VARCHAR(20) NOT NULL,
-	lname VARCAHR(20) NOT NULL,
+	lname VARCHAR(20) NOT NULL,
 	d_DOB DATE,
-	gender CHAR CHECK(gener = 'M' OR gender = 'F'),
+	gender CHAR CHECK(gender = 'M' OR gender = 'F'),
 	d_nationality VARCHAR(20),
 	d_active_form VARCHAR(20),
 	movie VARCHAR(30) NOT NULL,
-	movie_release DATE NOT NULL
+	movie_release DATE NOT NULL,
 	PRIMARY KEY(d_ID),
 	FOREIGN KEY(movie) REFERENCES MOVIE(m_title) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(movie_release) REFERENCES MOVIE(m_release_date) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE SCREENWRITER(
-	w_ID INT NOT NULL CHECK(a_ID > 0 AND a_ID <= 99999),
+	w_ID INT NOT NULL CHECK(w_ID > 0 AND w_ID <= 99999),
 	fname VARCHAR(20) NOT NULL,
 	lname VARCAHR(20) NOT NULL,
 	w_DOB DATE,
-	gender CHAR CHECK(gener = 'M' OR gender = 'F'),
+	gender CHAR CHECK(gender = 'M' OR gender = 'F'),
 	w_nationality VARCHAR(20),
 	w_active_form VARCHAR(20),
 	PRIMARY KEY(w_ID)
@@ -67,7 +67,7 @@ CREATE TABLE LOCATION(
 	country VARCHAR(30) NOT NULL,
 	region VARCHAR(30) NOT NULL,
 	place VARCHAR(30) NOT NULL,
-	PRIMARY KEY(county, region, place)
+	PRIMARY KEY(country, region, place)
 );
 
 CREATE TABLE SONG(
@@ -99,7 +99,7 @@ CREATE TABLE MOVIE_SONG(
 	song VARCHAR(30) NOT NULL,
 	song_release DATE NOT NULL,
 	artist VARCHAR(20) NOT NULL,
-	PRIMARY KEY(movie, movie_release, country, region, place),
+	PRIMARY KEY(movie, movie_release, song, song_release, artist),
 	FOREIGN KEY(movie) REFERENCES MOVIE(m_title) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(movie_release) REFERENCES MOVIE(m_release_date) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(song) REFERENCES SONG(s_title) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -110,7 +110,7 @@ CREATE TABLE MOVIE_SONG(
 CREATE TABLE WRITTEN_BY(
 	movie VARCHAR(30) NOT NULL,
 	movie_release DATE NOT NULL,
-	writer INT NOT NULL CHECK(a_ID > 0 AND a_ID <= 99999),
+	writer INT NOT NULL CHECK(writer > 0 AND writer <= 99999),
 	PRIMARY KEY(movie, movie_release, writer),
 	FOREIGN KEY(movie) REFERENCES MOVIE(m_title) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(movie_release) REFERENCES MOVIE(m_release_date) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -120,8 +120,8 @@ CREATE TABLE WRITTEN_BY(
 CREATE TABLE ACTED_IN(
 	movie VARCHAR(30) NOT NULL,
 	movie_release DATE NOT NULL,
-	actor INT NOT NULL CHECK(a_ID > 0 AND a_ID <= 99999),
-	PRIMARY KEY(movie, movie_release, writer),
+	actor INT NOT NULL CHECK(actor > 0 AND actor <= 99999),
+	PRIMARY KEY(movie, movie_release, actor),
 	FOREIGN KEY(movie) REFERENCES MOVIE(m_title) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(movie_release) REFERENCES MOVIE(m_release_date) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(actor) REFERENCES ACTOR(a_ID) ON UPDATE CASCADE ON DELETE CASCADE
