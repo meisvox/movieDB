@@ -32,6 +32,7 @@ CREATE TABLE ACTOR(
 	lname VARCAHR(20) NOT NULL,
 	a_DOB DATE,
 	gender CHAR CHECK(gener = 'M' OR gender = 'F'),
+	a_nationality VARCHAR(20),
 	a_active_form VARCHAR(20),
 	PRIMARY KEY(a_ID)
 );
@@ -42,6 +43,7 @@ CREATE TABLE DIRECTOR(
 	lname VARCAHR(20) NOT NULL,
 	d_DOB DATE,
 	gender CHAR CHECK(gener = 'M' OR gender = 'F'),
+	d_nationality VARCHAR(20),
 	d_active_form VARCHAR(20),
 	movie VARCHAR(30) NOT NULL,
 	movie_release DATE NOT NULL
@@ -56,6 +58,7 @@ CREATE TABLE SCREENWRITER(
 	lname VARCAHR(20) NOT NULL,
 	w_DOB DATE,
 	gender CHAR CHECK(gener = 'M' OR gender = 'F'),
+	w_nationality VARCHAR(20),
 	w_active_form VARCHAR(20),
 	PRIMARY KEY(w_ID)
 );
