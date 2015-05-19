@@ -141,8 +141,15 @@ INSERT INTO MOVIE VALUES('Caddyshack', '1980-07-25', 'Comedy', 98, 'English', 'D
 INSERT INTO MOVIE VALUES('Ghostbusters', '1984-06-08', 'Comedy', 107, 'English', 'Ivan Reitman', 'USA');
 
 /* ACTOR TABLE INSERT STATEMENTS */
-INSERT INTO ACTOR VALUES(10001, 'Bill', 'Murray', '1950-09-21', 'M', 'American', 'Comedy');
-INSERT INTO ACTOR VALUES(10002, 'Sigourney', 'Weaver', '1949-09-21', 'F', 'American', 'Comedy');
-INSERT INTO ACTOR VALUES(10003, 'Matthew', 'McConaughey', '1969-11-04', 'M', 'American', 'Drama');
-INSERT INTO ACTOR VALUES(10004, 'Harrison', 'Ford', '1942-07-13', 'M', 'American', 'Action');
-INSERT INTO ACTOR VALUES(10005, 'Carrie', 'Fisher', '1956-10-21', 'F', 'American', 'Action');
+INSERT INTO ACTOR VALUES(10001, 'Bill', 'Murray', '1950-09-21', 'M', 'American', 'Comedy'); /* Caddyshack */
+INSERT INTO ACTOR VALUES(10002, 'Sigourney', 'Weaver', '1949-09-21', 'F', 'American', 'Comedy'); /* Ghostbusters */
+INSERT INTO ACTOR VALUES(10003, 'Ian', 'McKellen', '1939-05-22', 'M', 'American', 'Drama'); /* The Lord of the Rings */
+INSERT INTO ACTOR VALUES(10004, 'Harrison', 'Ford', '1942-07-13', 'M', 'American', 'Action'); /* Star Wars */
+INSERT INTO ACTOR VALUES(10005, 'Robin', 'Wright', '1966-04-08', 'F', 'American', 'Drama'); /* The Princess Bride */
+INSERT INTO ACTOR VALUES(10006, 'Brad', 'Pitt', '1963-12-18', 'M', 'American', 'Drama'); /* */
+INSERT INTO ACTOR VALUES(10007, 'Scarlett', 'Johansson', '1984-11-22', 'F', 'American', 'Drama'); /* */
+INSERT INTO ACTOR VALUES(10008, 'Cary', 'Elwes', '1969-11-04', 'M', 'American', 'Drama'); /* Robin Hood: Men in Tights */
+INSERT INTO ACTOR VALUES(10009, 'Natalie', 'Portman', '1981-06-09', 'F', 'American', 'Drama'); /* */
+INSERT INTO ACTOR VALUES(10010, 'Carrie', 'Fisher', '1956-10-21', 'F', 'American', 'Action'); /* Star Wars */
+
+
