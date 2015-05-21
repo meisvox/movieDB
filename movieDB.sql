@@ -132,8 +132,8 @@ INSERT INTO MOVIE VALUES('Star Wars: Episode IV', '1977-05-25', 'Fantasy', 121, 
 INSERT INTO MOVIE VALUES('Star Wars: Episode V', '1980-05-21', 'Fantasy', 124, 'English', 'Lucasfilm Ltd', 'USA');
 INSERT INTO MOVIE VALUES('Star Wars: Episode VI', '1983-05-25', 'Fantasy', 131, 'English', 'Lucasfilm Ltd', 'USA');
 INSERT INTO MOVIE VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 'Fantasy', 178, 'English', 'WingNut Films', 'USA');
-INSERT INTO MOVIE VALUES('The Lord of the Rings: The Fellowship of the Ring', '2002-12-18', 'Fantasy', 179, 'English', 'WingNut Films', 'USA');
-INSERT INTO MOVIE VALUES('The Lord of the Rings: The Fellowship of the Ring', '2003-12-17', 'Fantasy', 201, 'English', 'WingNut Films', 'USA');
+INSERT INTO MOVIE VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 'Fantasy', 179, 'English', 'WingNut Films', 'USA');
+INSERT INTO MOVIE VALUES('The Lord of the Rings: The Return of the King', '2003-12-17', 'Fantasy', 201, 'English', 'WingNut Films', 'USA');
 INSERT INTO MOVIE VALUES('2001: A Space Odessey', '1968-04-03', 'Sci-Fi', 148, 'English', 'Stanley Kubrick', 'USA');
 INSERT INTO MOVIE VALUES('The Princess Bride', '1987-09-25', 'Adventure', 98, 'English', 'ACT III Communications', 'USA');
 INSERT INTO MOVIE VALUES('Robin Hood: Men in Tights', '1993-07-28', 'Comedy', 104, 'English', 'Mel Brooks', 'USA');
@@ -152,4 +152,28 @@ INSERT INTO ACTOR VALUES(10008, 'Cary', 'Elwes', '1969-11-04', 'M', 'American', 
 INSERT INTO ACTOR VALUES(10009, 'Natalie', 'Portman', '1981-06-09', 'F', 'American', 'Drama'); /* */
 INSERT INTO ACTOR VALUES(10010, 'Carrie', 'Fisher', '1956-10-21', 'F', 'American', 'Action'); /* Star Wars */
 
+/* SCREENWRITER TABLE INSERT STATEMENTS */
+INSERT INTO SCREENWRITER VALUES(1, 'George', 'Lucas', '1944-05-14', 'M','American', 'Action'); /* Star Wars Ep. 4-6*/
+INSERT INTO SCREENWRITER VALUES(2, 'Lawrence', 'Kasdan', '1949-01-14', 'M', 'American', 'Action'); /*Star Wars Ep. 5-6*/
+INSERT INTO SCREENWRITER VALUES(3, 'Leigh', 'Brackett', '1915-12-07', 'F', 'American', 'Action'); /*Star Wars Ep. 5*/
+INSERT INTO SCREENWRITER VALUES(4, 'Fran', 'Walsh', '1959-01-10', 'F', 'New Zealander', 'Action'); /*Lord of the Rings*/
+INSERT INTO SCREENWRITER VALUES(5, 'Stephen', 'Sinclair', '1953-03-07', 'New Zealander', 'Action'); /*The Two Towers*/
+INSERT INTO SCREENWRITER VALUES(6, 'Arthur', 'Clark', '1917-12-16', 'British', 'Action'); /*2001: A Space Odyssey*/
+INSERT INTO SCREENWRITER VALUES(7, 'William', 'Goldman', '1931-08-12', 'American', 'Drama'); /*Princess Bride*/
+INSERT INTO SCREENWRITER VALUES(8, 'Evan', 'Chandler', '1944-01-25', 'American', 'Comedy'); /*Robin Hood*/
+INSERT INTO SCREENWRITER VALUES(9, 'Brian', 'Doyle-Murray', '1945-10-31', 'American', 'Comedy'); /*Caddyshack*/
+INSERT INTO SCREENWRITER VALUES(10, 'Dan', 'Akroyd', '1952-07-01', 'American', 'Comedy'); /*Ghostbusters*/
 
+/* WRITTEN_BY TABLE INSERT STATEMENTS */
+INSERT INTO WRITTEN_BY VALUES('Star Wars: Episode IV', '1977-05-25', 1);
+INSERT INTO WRITTEN_BY VALUES('Star Wars: Episode V', '1980-05-21', 2);
+INSERT INTO WRITTEN_BY VALUES('Star Wars: Episode V', '1980-05-21', 3);
+INSERT INTO WRITTEN_BY VALUES('Star Wars: Episode VI', '1983-05-25', 2);
+INSERT INTO WRITTEN_BY VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 4);
+INSERT INTO WRITTEN_BY VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 5);
+INSERT INTO WRITTEN_BY VALUES('The Lord of the Rings: The Return of the King', '2003-12-17', 4);
+INSERT INTO WRITTEN_BY VALUES('2001: A Space Odessey', '1968-04-03', 6);
+INSERT INTO WRITTEN_BY VALUES('The Princess Bride', '1987-09-25', 7);
+INSERT INTO WRITTEN_BY VALUES('Robin Hood: Men in Tights', '1993-07-28', 8);
+INSERT INTO WRITTEN_BY VALUES('Caddyshack', '1980-07-25', 9);
+INSERT INTO WRITTEN_BY VALUES('Ghostbusters', '1984-06-08', 10);
