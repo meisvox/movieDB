@@ -157,12 +157,12 @@ INSERT INTO SCREENWRITER VALUES(1, 'George', 'Lucas', '1944-05-14', 'M','America
 INSERT INTO SCREENWRITER VALUES(2, 'Lawrence', 'Kasdan', '1949-01-14', 'M', 'American', 'Action'); /*Star Wars Ep. 5-6*/
 INSERT INTO SCREENWRITER VALUES(3, 'Leigh', 'Brackett', '1915-12-07', 'F', 'American', 'Action'); /*Star Wars Ep. 5*/
 INSERT INTO SCREENWRITER VALUES(4, 'Fran', 'Walsh', '1959-01-10', 'F', 'New Zealander', 'Action'); /*Lord of the Rings*/
-INSERT INTO SCREENWRITER VALUES(5, 'Stephen', 'Sinclair', '1953-03-07', 'New Zealander', 'Action'); /*The Two Towers*/
-INSERT INTO SCREENWRITER VALUES(6, 'Arthur', 'Clark', '1917-12-16', 'British', 'Action'); /*2001: A Space Odyssey*/
-INSERT INTO SCREENWRITER VALUES(7, 'William', 'Goldman', '1931-08-12', 'American', 'Drama'); /*Princess Bride*/
-INSERT INTO SCREENWRITER VALUES(8, 'Evan', 'Chandler', '1944-01-25', 'American', 'Comedy'); /*Robin Hood*/
-INSERT INTO SCREENWRITER VALUES(9, 'Brian', 'Doyle-Murray', '1945-10-31', 'American', 'Comedy'); /*Caddyshack*/
-INSERT INTO SCREENWRITER VALUES(10, 'Dan', 'Akroyd', '1952-07-01', 'American', 'Comedy'); /*Ghostbusters*/
+INSERT INTO SCREENWRITER VALUES(5, 'Stephen', 'Sinclair', '1953-03-07', 'M', 'New Zealander', 'Action'); /*The Two Towers*/
+INSERT INTO SCREENWRITER VALUES(6, 'Arthur', 'Clark', '1917-12-16','M', 'British', 'Action'); /*2001: A Space Odyssey*/
+INSERT INTO SCREENWRITER VALUES(7, 'William', 'Goldman', '1931-08-12','M', 'American', 'Drama'); /*Princess Bride*/
+INSERT INTO SCREENWRITER VALUES(8, 'Evan', 'Chandler', '1944-01-25','M', 'American', 'Comedy'); /*Robin Hood*/
+INSERT INTO SCREENWRITER VALUES(9, 'Brian', 'Doyle-Murray', '1945-10-31','M', 'American', 'Comedy'); /*Caddyshack*/
+INSERT INTO SCREENWRITER VALUES(10, 'Dan', 'Akroyd', '1952-07-01','M', 'American', 'Comedy'); /*Ghostbusters*/
 
 /* WRITTEN_BY TABLE INSERT STATEMENTS */
 INSERT INTO WRITTEN_BY VALUES('Star Wars: Episode IV', '1977-05-25', 1);
@@ -177,3 +177,15 @@ INSERT INTO WRITTEN_BY VALUES('The Princess Bride', '1987-09-25', 7);
 INSERT INTO WRITTEN_BY VALUES('Robin Hood: Men in Tights', '1993-07-28', 8);
 INSERT INTO WRITTEN_BY VALUES('Caddyshack', '1980-07-25', 9);
 INSERT INTO WRITTEN_BY VALUES('Ghostbusters', '1984-06-08', 10);
+
+/* ACTED_IN TABLE INSERT STATEMENTS */
+INSERT INTO ACTED_IN VALUES('Star Wars: Episode IV', '1977-05-25', 10004);
+INSERT INTO ACTED_IN VALUES('Star Wars: Episode IV', '1977-05-25', 10010);
+INSERT INTO ACTED_IN VALUES('The Princess Bride', '1987-09-25', 10005);
+INSERT INTO ACTED_IN VALUES('Ghostbusters', '1984-06-08', 10001);
+INSERT INTO ACTED_IN VALUES('Ghostbusters', '1984-06-08', 10002);
+INSERT INTO ACTED_IN VALUES('Caddyshack', '1980-07-25', 10001);
+INSERT INTO ACTED_IN VALUES('Star Wars: Episode V', '1980-05-21', 10004);
+INSERT INTO ACTED_IN VALUES('Star Wars: Episode V', '1980-05-21', 100010);
+INSERT INTO ACTED_IN VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 10003);
+INSERT INTO ACTED_IN VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 10003);
