@@ -75,7 +75,7 @@ CREATE TABLE SONG(
 	s_artist VARCHAR(20) NOT NULL,
 	s_release_date DATE NOT NULL,
 	s_producer VARCHAR(30),
-	album VARCHAR(20),
+	album VARCHAR(80),
 	PRIMARY KEY(s_title, s_artist, s_release_date)
 );
 
@@ -202,3 +202,29 @@ INSERT INTO LOCATION VALUES('New Zeland', 'Waikato', 'Hinuera Valley'); /* Retur
 INSERT INTO LOCATION VALUES('New Zeland', 'Southern Alps', 'Mount Tasman'); /* Two Towers */
 INSERT INTO LOCATION VALUES('New Zeland', 'Otago', 'Queenstown'); /* Fellowship */
 INSERT INTO LOCATION VALUES('Tunisia', 'Jerba', 'Ajim'); /* SW IV */
+
+/* MOVIE_SONG TABLE INSERT STATEMENTS */
+INSERT INTO MOVIE_SONG VALUES('Star Wars: Episode IV', '1977-05-25', 'The Last Battle', '1977-05-05', 'John Williams');
+INSERT INTO MOVIE_SONG VALUES('Star Wars: Episode V', '1980-05-21', 'The City in the Clouds', '1979-12-27', 'John Williams');
+INSERT INTO MOVIE_SONG VALUES('Star Wars: Episode VI', '1983-05-25', 'Han Solo Returns', '1983-01-17', 'John WIlliams');
+INSERT INTO MOVIE_SONG VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 'A Knife in the Dark', '2001-11-20', 'Howard Shore');
+INSERT INTO MOVIE_SONG VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 'Isengard Unleashed', '2002-12-10', 'Howard Shore');
+INSERT INTO MOVIE_SONG VALUES('The Lord of the Rings: The Return of the King', '2003-12-17', 'Ash and Smoke', '2003-11-25', 'Howard Shore');
+INSERT INTO MOVIE_SONG VALUES('2001: A Space Odessey', '1968-04-03', 'The Blue Danube', '1867-02-15', 'Johann Strauss II');
+INSERT INTO MOVIE_SONG VALUES('The Princess Bride', '1987-09-25', 'The Swordfight', '1987-11-12', 'Mark Knopfler');
+INSERT INTO MOVIE_SONG VALUES('Robin Hood: Men in Tights', '1993-07-28', 'Men in Tights', '1994-02-15', 'Mel Brooks');
+INSERT INTO MOVIE_SONG VALUES('Caddyshack', '1980-07-25','I'm Alright' ,'1980-07-07', 'Kenny Loggins');
+INSERT INTO MOVIE_SONG VALUES('Ghostbusters', '1984-06-08', 'Ghostbusters', '1984-05-27', 'Ray Parker Jr');
+
+/* SONG TABLE INSERT STATEMENTS */
+INSERT INTO SONG VALUES('The Last Battle', 'John Williams', '1977-05-05', 'George Lucas', 'Star Wars: Original Motion Picture Soundtrack');
+INSERT INTO SONG VALUES('The City in the Clouds', 'John Williams', '1979-12-27', 'John Williams', 'Star Wars: The Empire Strikes Back: Original Motion Picture Soundtrack');
+INSERT INTO SONG VALUES('Han Solo Returns', 'John WIlliams', '1983-01-17', 'John WIlliams', 'Star Wars: Return of the Jedi: Original Motion Picture Soundtrack');
+INSERT INTO SONG VALUES('A Knife in the Dark', 'Howard Shore', '2001-11-20', 'Howard Shore', 'The Lord of the Rings: The Fellowship of the Ring: Original Motion Picture Soundtrack');
+INSERT INTO SONG VALUES('Isengard Unleashed', 'Howard Shore', '2002-12-10', 'Howard Shore', 'The Lord of the Rings: The Two Towers: Original Motion Picture Soundtrack');
+INSERT INTO SONG VALUES('Ash and Smoke', 'Howard Shore', '2003-11-25', 'Howard Shore', 'The Lord of the Rings: The Return of the King: Original Motion Picture Soundtrack');
+INSERT INTO SONG VALUES('The Blue Danube', 'Johann Strauss II', '1867-02-15', 'Joseph Weyl', '2001: A Space Odyssey (Soundtrack)');
+INSERT INTO SONG VALUES('The Swordfight', 'Mark Knopfler',  '1987-11-12', 'Mark Knopfler', 'The Princess Bride (Soundtrack)');
+INSERT INTO SONG VALUES('Men in Tights', 'Mel Brooks', '1994-02-15', 'Mel Brooks', 'Robin Hood: Men in Tights (Soundstrack)');
+INSERT INTO SONG VALUES('I'm Alright' ,'Kenny Loggins' , '1980-07-07', 'Kenny Loggins', 'Caddyshack: Music from the Motion Picture Soundtrack');
+INSERT INTO SONG VALUES('Ghostbusters', 'Ray Parker Jr', '1984-05-27', 'Ray Parker Jr', 'Ghostbusters (Soundtrack)');
