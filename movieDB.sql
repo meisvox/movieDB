@@ -189,3 +189,16 @@ INSERT INTO ACTED_IN VALUES('Star Wars: Episode V', '1980-05-21', 10004);
 INSERT INTO ACTED_IN VALUES('Star Wars: Episode V', '1980-05-21', 100010);
 INSERT INTO ACTED_IN VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 10003);
 INSERT INTO ACTED_IN VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 10003);
+
+/* LOCATION TABLE INSERT STATEMENTS */
+INSERT INTO LOCATION VALUES('USA', 'California', 'Santa Clarita'); /* Robin Hood */
+INSERT INTO LOCATION VALUES('USA', 'New York', 'Brooklyn'); /* Ghostbusters */
+INSERT INTO LOCATION VALUES('Norway', 'Finse', 'Hardangerjøkulen Glacier'); /* SW V */
+INSERT INTO LOCATION VALUES('USA', 'California', 'Redwood National Park'); /* SW VI */
+INSERT INTO LOCATION VALUES('USA', 'Florida', 'Davie'); /* Caddyshack */
+INSERT INTO LOCATION VALUES('Ireland', 'County Clare', 'Cliffs of Moher'); /* Princess Bride */
+INSERT INTO LOCATION VALUES('Scotland', 'Western Isles', 'Isel of Harris'); /* 2001 */
+INSERT INTO LOCATION VALUES('New Zeland', 'Waikato', 'Hinuera Valley'); /* Return of the King*/
+INSERT INTO LOCATION VALUES('New Zeland', 'Southern Alps', 'Mount Tasman'); /* Two Towers */
+INSERT INTO LOCATION VALUES('New Zeland', 'Otago', 'Queenstown'); /* Fellowship */
+INSERT INTO LOCATION VALUES('Tunisia', 'Jerba', 'Ajim'); /* SW IV */
