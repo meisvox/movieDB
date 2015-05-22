@@ -203,6 +203,19 @@ INSERT INTO LOCATION VALUES('New Zeland', 'Southern Alps', 'Mount Tasman'); /* T
 INSERT INTO LOCATION VALUES('New Zeland', 'Otago', 'Queenstown'); /* Fellowship */
 INSERT INTO LOCATION VALUES('Tunisia', 'Jerba', 'Ajim'); /* SW IV */
 
+/* MOVIE_LOCATION INSERT STATEMENTS */
+INSERT INTO MOVIE_LOCATION VALUES('Star Wars: Episode IV', '1977-05-25', 'Tunisia', 'Jerba', 'Ajim');
+INSERT INTO MOVIE_LOCATION VALUES('Star Wars: Episode V', '1980-05-21', 'Norway', 'Finse', 'Hardangerjøkulen Glacier');
+INSERT INTO MOVIE_LOCATION VALUES('Star Wars: Episode VI', '1983-05-25', 'USA', 'California', 'Redwood National Park');
+INSERT INTO MOVIE_LOCATION VALUES('Ghostbusters', '1984-06-08', 'USA', 'New York', 'Brooklyn');
+INSERT INTO MOVIE_LOCATION VALUES('Caddyshack', '1980-07-25', 'USA', 'Florida', 'Davie');
+INSERT INTO MOVIE_LOCATION VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 'New Zeland', 'Otago', 'Queenstown');
+INSERT INTO MOVIE_LOCATION VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 'New Zeland', 'Southern Alps', 'Mount Tasman');
+INSERT INTO MOVIE_LOCATION VALUES('The Lord of the Rings: The Return of the King', '2003-12-17', 'New Zeland', 'Waikato', 'Hinuera Valley');
+INSERT INTO MOVIE_LOCATION VALUES('2001: A Space Odessey', '1968-04-03', 'Scotland', 'Western Isles', 'Isel of Harris');
+INSERT INTO MOVIE_LOCATION VALUES('The Princess Bride', '1987-09-25', 'Ireland', 'County Clare', 'Cliffs of Moher');
+INSERT INTO MOVIE_LOCATION VALUES('Robin Hood: Men in Tights', '1993-07-28', 'USA', 'California', 'Santa Clarita');
+
 /* MOVIE_SONG TABLE INSERT STATEMENTS */
 INSERT INTO MOVIE_SONG VALUES('Star Wars: Episode IV', '1977-05-25', 'The Last Battle', '1977-05-05', 'John Williams');
 INSERT INTO MOVIE_SONG VALUES('Star Wars: Episode V', '1980-05-21', 'The City in the Clouds', '1979-12-27', 'John Williams');
