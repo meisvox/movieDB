@@ -241,3 +241,15 @@ INSERT INTO SONG VALUES('The Swordfight', 'Mark Knopfler',  '1987-11-12', 'Mark 
 INSERT INTO SONG VALUES('Men in Tights', 'Mel Brooks', '1994-02-15', 'Mel Brooks', 'Robin Hood: Men in Tights (Soundstrack)');
 INSERT INTO SONG VALUES('I'm Alright' ,'Kenny Loggins' , '1980-07-07', 'Kenny Loggins', 'Caddyshack: Music from the Motion Picture Soundtrack');
 INSERT INTO SONG VALUES('Ghostbusters', 'Ray Parker Jr', '1984-05-27', 'Ray Parker Jr', 'Ghostbusters (Soundtrack)');
+
+/* DIRECTOR TABLE INSERT STATEMENTS */
+INSERT INTO DIRECTOR VALUES(1000, 'George', 'Lucas', '1944-5-14', 'M', 'American', '1971-3-11');
+INSERT INTO DIRECTOR VALUES(1001, 'Irvin', 'Kershner', '1923-4-29', 'M', 'American', '1961-3-26');
+INSERT INTO DIRECTOR VALUES(1002, 'Richard', 'Marquand', '1937-9-22', 'M', 'British', '1978-9-14');
+INSERT INTO DIRECTOR VALUES(1003, 'Peter', 'Jackson', '1961-10-31', 'M', 'New Zealander', '1987-12-11');
+INSERT INTO DIRECTOR VALUES(1004, 'Stanley', 'Kubrick', '1928-7-26', 'M', 'American', '1951-4-26');
+INSERT INTO DIRECTOR VALUES(1005, 'Rob', 'Reiner', '1947-3-6', 'M', 'American', '1984-3-2');
+INSERT INTO DIRECTOR VALUES(1006, 'Mel', 'Brooks', '1926-6-28', 'M', 'American', '1968-3-18');
+INSERT INTO DIRECTOR VALUES(1007, 'Harold', 'Ramis', '1944-11-21', 'M', 'American', '1980-7-25');
+INSERT INTO DIRECTOR VALUES(1008, 'Ivan', 'Reitman', '1946-10-27', 'M', 'Canadian', '1971-9-27');
+INSERT INTO DIRECTOR VALUES(1009, 'Joss', 'Whedon', '1964-6-23', 'M', 'American', '2005-8-22');
