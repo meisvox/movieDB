@@ -15,15 +15,28 @@ DROP TABLE MOVIE_SONG;
 DROP TABLE WRITTEN_BY;
 DROP TABLE ACTED_IN;
 
-CREATE TABLE MOVIE (
+CREATE TABLE DIRECTOR(
+	d_ID INT NOT NULL CHECK(d_ID > 0 AND d_ID <= 99999),
+	fname VARCHAR(20) NOT NULL,
+	lname VARCHAR(20) NOT NULL,
+	d_DOB DATE,
+	gender CHAR(1) CHECK(gender = 'M' OR gender = 'F'),
+	d_nationality VARCHAR(20),
+	d_active_form VARCHAR(20),
+	PRIMARY KEY(d_ID)
+);
+
+CREATE TABLE MOVIE(
 	m_title VARCHAR(60) NOT NULL,
 	m_release_date DATE NOT NULL,
 	genre VARCHAR(15),
 	minutes INT,
 	language VARCHAR(20),
+	m_director INT NOT NULL CHECK(m_director > 0 AND m_director <= 99999),
 	m_producer VARCHAR(30),
 	origin VARCHAR(20),
-	PRIMARY KEY (m_title, m_release_date)
+	PRIMARY KEY(m_title, m_release_date)
+	FOREIGN KEY(m_director) REFERENCES DIRECTOR(d_ID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE ACTOR(
@@ -31,25 +44,10 @@ CREATE TABLE ACTOR(
 	fname VARCHAR(20) NOT NULL,
 	lname VARCHAR(20) NOT NULL,
 	a_DOB DATE,
-	gender CHAR CHECK(gender = 'M' OR gender = 'F'),
+	gender CHAR(1) CHECK(gender = 'M' OR gender = 'F'),
 	a_nationality VARCHAR(20),
 	a_active_form VARCHAR(20),
 	PRIMARY KEY(a_ID)
-);
-
-CREATE TABLE DIRECTOR(
-	d_ID INT NOT NULL CHECK(d_ID > 0 AND d_ID <= 99999),
-	fname VARCHAR(20) NOT NULL,
-	lname VARCHAR(20) NOT NULL,
-	d_DOB DATE,
-	gender CHAR CHECK(gender = 'M' OR gender = 'F'),
-	d_nationality VARCHAR(20),
-	d_active_form VARCHAR(20),
-	movie VARCHAR(60) NOT NULL,
-	movie_release DATE NOT NULL,
-	PRIMARY KEY(d_ID),
-	FOREIGN KEY(movie) REFERENCES MOVIE(m_title) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY(movie_release) REFERENCES MOVIE(m_release_date) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE SCREENWRITER(
@@ -57,7 +55,7 @@ CREATE TABLE SCREENWRITER(
 	fname VARCHAR(20) NOT NULL,
 	lname VARCAHR(20) NOT NULL,
 	w_DOB DATE,
-	gender CHAR CHECK(gender = 'M' OR gender = 'F'),
+	gender CHAR(1) CHECK(gender = 'M' OR gender = 'F'),
 	w_nationality VARCHAR(20),
 	w_active_form VARCHAR(20),
 	PRIMARY KEY(w_ID)
@@ -127,18 +125,31 @@ CREATE TABLE ACTED_IN(
 	FOREIGN KEY(actor) REFERENCES ACTOR(a_ID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+
+/* DIRECTOR TABLE INSERT STATEMENTS */
+INSERT INTO DIRECTOR VALUES(1000, 'George', 'Lucas', '1944-5-14', 'M', 'American', '1971-3-11');
+INSERT INTO DIRECTOR VALUES(1001, 'Irvin', 'Kershner', '1923-4-29', 'M', 'American', '1961-3-26');
+INSERT INTO DIRECTOR VALUES(1002, 'Richard', 'Marquand', '1937-9-22', 'M', 'British', '1978-9-14');
+INSERT INTO DIRECTOR VALUES(1003, 'Peter', 'Jackson', '1961-10-31', 'M', 'New Zealander', '1987-12-11');
+INSERT INTO DIRECTOR VALUES(1004, 'Stanley', 'Kubrick', '1928-7-26', 'M', 'American', '1951-4-26');
+INSERT INTO DIRECTOR VALUES(1005, 'Rob', 'Reiner', '1947-3-6', 'M', 'American', '1984-3-2');
+INSERT INTO DIRECTOR VALUES(1006, 'Mel', 'Brooks', '1926-6-28', 'M', 'American', '1968-3-18');
+INSERT INTO DIRECTOR VALUES(1007, 'Harold', 'Ramis', '1944-11-21', 'M', 'American', '1980-7-25');
+INSERT INTO DIRECTOR VALUES(1008, 'Ivan', 'Reitman', '1946-10-27', 'M', 'Canadian', '1971-9-27');
+INSERT INTO DIRECTOR VALUES(1009, 'Joss', 'Whedon', '1964-6-23', 'M', 'American', '2005-8-22');
+
 /* MOVIE TABLE INSERT STATEMENTS */
-INSERT INTO MOVIE VALUES('Star Wars: Episode IV', '1977-05-25', 'Fantasy', 121, 'English', 'Lucasfilm Ltd', 'USA');
-INSERT INTO MOVIE VALUES('Star Wars: Episode V', '1980-05-21', 'Fantasy', 124, 'English', 'Lucasfilm Ltd', 'USA');
-INSERT INTO MOVIE VALUES('Star Wars: Episode VI', '1983-05-25', 'Fantasy', 131, 'English', 'Lucasfilm Ltd', 'USA');
-INSERT INTO MOVIE VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 'Fantasy', 178, 'English', 'WingNut Films', 'USA');
-INSERT INTO MOVIE VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 'Fantasy', 179, 'English', 'WingNut Films', 'USA');
-INSERT INTO MOVIE VALUES('The Lord of the Rings: The Return of the King', '2003-12-17', 'Fantasy', 201, 'English', 'WingNut Films', 'USA');
-INSERT INTO MOVIE VALUES('2001: A Space Odessey', '1968-04-03', 'Sci-Fi', 148, 'English', 'Stanley Kubrick', 'USA');
-INSERT INTO MOVIE VALUES('The Princess Bride', '1987-09-25', 'Adventure', 98, 'English', 'ACT III Communications', 'USA');
-INSERT INTO MOVIE VALUES('Robin Hood: Men in Tights', '1993-07-28', 'Comedy', 104, 'English', 'Mel Brooks', 'USA');
-INSERT INTO MOVIE VALUES('Caddyshack', '1980-07-25', 'Comedy', 98, 'English', 'Douglas Kenney', 'USA');
-INSERT INTO MOVIE VALUES('Ghostbusters', '1984-06-08', 'Comedy', 107, 'English', 'Ivan Reitman', 'USA');
+INSERT INTO MOVIE VALUES('Star Wars: Episode IV', '1977-05-25', 'Fantasy', 121, 'English', 1000, 'Lucasfilm Ltd', 'USA');
+INSERT INTO MOVIE VALUES('Star Wars: Episode V', '1980-05-21', 'Fantasy', 124, 'English', 1000, 'Lucasfilm Ltd', 'USA');
+INSERT INTO MOVIE VALUES('Star Wars: Episode VI', '1983-05-25', 'Fantasy', 131, 'English', 1000, 'Lucasfilm Ltd', 'USA');
+INSERT INTO MOVIE VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 'Fantasy', 178, 'English', 1003, 'WingNut Films', 'USA');
+INSERT INTO MOVIE VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 'Fantasy', 179, 'English', 1003, 'WingNut Films', 'USA');
+INSERT INTO MOVIE VALUES('The Lord of the Rings: The Return of the King', '2003-12-17', 'Fantasy', 201, 'English', 1003, 'WingNut Films', 'USA');
+INSERT INTO MOVIE VALUES('2001: A Space Odessey', '1968-04-03', 'Sci-Fi', 148, 'English', 1004, 'Stanley Kubrick', 'USA');
+INSERT INTO MOVIE VALUES('The Princess Bride', '1987-09-25', 'Adventure', 98, 'English', 1005, 'ACT III Communications', 'USA');
+INSERT INTO MOVIE VALUES('Robin Hood: Men in Tights', '1993-07-28', 'Comedy', 104, 'English', 1006, 'Mel Brooks', 'USA');
+INSERT INTO MOVIE VALUES('Caddyshack', '1980-07-25', 'Comedy', 98, 'English', 1007, 'Douglas Kenney', 'USA');
+INSERT INTO MOVIE VALUES('Ghostbusters', '1984-06-08', 'Comedy', 107, 'English', 1008, 'Ivan Reitman', 'USA');
 
 /* ACTOR TABLE INSERT STATEMENTS */
 INSERT INTO ACTOR VALUES(10001, 'Bill', 'Murray', '1950-09-21', 'M', 'American', 'Comedy'); /* Caddyshack */
@@ -186,7 +197,7 @@ INSERT INTO ACTED_IN VALUES('Ghostbusters', '1984-06-08', 10001);
 INSERT INTO ACTED_IN VALUES('Ghostbusters', '1984-06-08', 10002);
 INSERT INTO ACTED_IN VALUES('Caddyshack', '1980-07-25', 10001);
 INSERT INTO ACTED_IN VALUES('Star Wars: Episode V', '1980-05-21', 10004);
-INSERT INTO ACTED_IN VALUES('Star Wars: Episode V', '1980-05-21', 100010);
+INSERT INTO ACTED_IN VALUES('Star Wars: Episode V', '1980-05-21', 10010);
 INSERT INTO ACTED_IN VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 10003);
 INSERT INTO ACTED_IN VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 10003);
 
@@ -226,7 +237,7 @@ INSERT INTO MOVIE_SONG VALUES('The Lord of the Rings: The Return of the King', '
 INSERT INTO MOVIE_SONG VALUES('2001: A Space Odessey', '1968-04-03', 'The Blue Danube', '1867-02-15', 'Johann Strauss II');
 INSERT INTO MOVIE_SONG VALUES('The Princess Bride', '1987-09-25', 'The Swordfight', '1987-11-12', 'Mark Knopfler');
 INSERT INTO MOVIE_SONG VALUES('Robin Hood: Men in Tights', '1993-07-28', 'Men in Tights', '1994-02-15', 'Mel Brooks');
-INSERT INTO MOVIE_SONG VALUES('Caddyshack', '1980-07-25','I'm Alright' ,'1980-07-07', 'Kenny Loggins');
+INSERT INTO MOVIE_SONG VALUES('Caddyshack', '1980-07-25','Im Alright' ,'1980-07-07', 'Kenny Loggins');
 INSERT INTO MOVIE_SONG VALUES('Ghostbusters', '1984-06-08', 'Ghostbusters', '1984-05-27', 'Ray Parker Jr');
 
 /* SONG TABLE INSERT STATEMENTS */
@@ -239,17 +250,7 @@ INSERT INTO SONG VALUES('Ash and Smoke', 'Howard Shore', '2003-11-25', 'Howard S
 INSERT INTO SONG VALUES('The Blue Danube', 'Johann Strauss II', '1867-02-15', 'Joseph Weyl', '2001: A Space Odyssey (Soundtrack)');
 INSERT INTO SONG VALUES('The Swordfight', 'Mark Knopfler',  '1987-11-12', 'Mark Knopfler', 'The Princess Bride (Soundtrack)');
 INSERT INTO SONG VALUES('Men in Tights', 'Mel Brooks', '1994-02-15', 'Mel Brooks', 'Robin Hood: Men in Tights (Soundstrack)');
-INSERT INTO SONG VALUES('I'm Alright' ,'Kenny Loggins' , '1980-07-07', 'Kenny Loggins', 'Caddyshack: Music from the Motion Picture Soundtrack');
+INSERT INTO SONG VALUES('Im Alright' ,'Kenny Loggins' , '1980-07-07', 'Kenny Loggins', 'Caddyshack: Music from the Motion Picture Soundtrack');
 INSERT INTO SONG VALUES('Ghostbusters', 'Ray Parker Jr', '1984-05-27', 'Ray Parker Jr', 'Ghostbusters (Soundtrack)');
 
-/* DIRECTOR TABLE INSERT STATEMENTS */
-INSERT INTO DIRECTOR VALUES(1000, 'George', 'Lucas', '1944-5-14', 'M', 'American', '1971-3-11');
-INSERT INTO DIRECTOR VALUES(1001, 'Irvin', 'Kershner', '1923-4-29', 'M', 'American', '1961-3-26');
-INSERT INTO DIRECTOR VALUES(1002, 'Richard', 'Marquand', '1937-9-22', 'M', 'British', '1978-9-14');
-INSERT INTO DIRECTOR VALUES(1003, 'Peter', 'Jackson', '1961-10-31', 'M', 'New Zealander', '1987-12-11');
-INSERT INTO DIRECTOR VALUES(1004, 'Stanley', 'Kubrick', '1928-7-26', 'M', 'American', '1951-4-26');
-INSERT INTO DIRECTOR VALUES(1005, 'Rob', 'Reiner', '1947-3-6', 'M', 'American', '1984-3-2');
-INSERT INTO DIRECTOR VALUES(1006, 'Mel', 'Brooks', '1926-6-28', 'M', 'American', '1968-3-18');
-INSERT INTO DIRECTOR VALUES(1007, 'Harold', 'Ramis', '1944-11-21', 'M', 'American', '1980-7-25');
-INSERT INTO DIRECTOR VALUES(1008, 'Ivan', 'Reitman', '1946-10-27', 'M', 'Canadian', '1971-9-27');
-INSERT INTO DIRECTOR VALUES(1009, 'Joss', 'Whedon', '1964-6-23', 'M', 'American', '2005-8-22');
+
