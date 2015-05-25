@@ -17,12 +17,12 @@ DROP TABLE ACTED_IN;
 
 CREATE TABLE DIRECTOR(
 	d_ID INT NOT NULL CHECK(d_ID > 0 AND d_ID <= 99999),
-	fname VARCHAR(20) NOT NULL,
-	lname VARCHAR(20) NOT NULL,
+	d_fname VARCHAR(20) NOT NULL,
+	d_lname VARCHAR(20) NOT NULL,
 	d_DOB DATE,
-	gender CHAR(1) CHECK(gender = 'M' OR gender = 'F'),
+	d_gender CHAR(1) CHECK(d_gender = 'M' OR d_gender = 'F'),
 	d_nationality VARCHAR(20),
-	d_active_form VARCHAR(20),
+	d_active_from DATE,
 	PRIMARY KEY(d_ID)
 );
 
@@ -41,23 +41,23 @@ CREATE TABLE MOVIE(
 
 CREATE TABLE ACTOR(
 	a_ID INT NOT NULL CHECK(a_ID > 0 AND a_ID <= 99999),
-	fname VARCHAR(20) NOT NULL,
-	lname VARCHAR(20) NOT NULL,
+	a_fname VARCHAR(20) NOT NULL,
+	a_lname VARCHAR(20) NOT NULL,
 	a_DOB DATE,
-	gender CHAR(1) CHECK(gender = 'M' OR gender = 'F'),
+	a_gender CHAR(1) CHECK(a_gender = 'M' OR a_gender = 'F'),
 	a_nationality VARCHAR(20),
-	a_active_form VARCHAR(20),
+	a_active_from DATE,
 	PRIMARY KEY(a_ID)
 );
 
 CREATE TABLE SCREENWRITER(
 	w_ID INT NOT NULL CHECK(w_ID > 0 AND w_ID <= 99999),
-	fname VARCHAR(20) NOT NULL,
-	lname VARCAHR(20) NOT NULL,
+	w_fname VARCHAR(20) NOT NULL,
+	w_lname VARCAHR(20) NOT NULL,
 	w_DOB DATE,
-	gender CHAR(1) CHECK(gender = 'M' OR gender = 'F'),
+	w_gender CHAR(1) CHECK(w_gender = 'M' OR w_gender = 'F'),
 	w_nationality VARCHAR(20),
-	w_active_form VARCHAR(20),
+	w_active_from DATE,
 	PRIMARY KEY(w_ID)
 );
 
@@ -125,7 +125,6 @@ CREATE TABLE ACTED_IN(
 	FOREIGN KEY(actor) REFERENCES ACTOR(a_ID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-
 /* DIRECTOR TABLE INSERT STATEMENTS */
 INSERT INTO DIRECTOR VALUES(1000, 'George', 'Lucas', '1944-5-14', 'M', 'American', '1971-3-11');
 INSERT INTO DIRECTOR VALUES(1001, 'Irvin', 'Kershner', '1923-4-29', 'M', 'American', '1961-3-26');
@@ -152,28 +151,28 @@ INSERT INTO MOVIE VALUES('Caddyshack', '1980-07-25', 'Comedy', 98, 'English', 10
 INSERT INTO MOVIE VALUES('Ghostbusters', '1984-06-08', 'Comedy', 107, 'English', 1008, 'Ivan Reitman', 'USA');
 
 /* ACTOR TABLE INSERT STATEMENTS */
-INSERT INTO ACTOR VALUES(10001, 'Bill', 'Murray', '1950-09-21', 'M', 'American', 'Comedy'); /* Caddyshack */
-INSERT INTO ACTOR VALUES(10002, 'Sigourney', 'Weaver', '1949-09-21', 'F', 'American', 'Comedy'); /* Ghostbusters */
-INSERT INTO ACTOR VALUES(10003, 'Ian', 'McKellen', '1939-05-22', 'M', 'American', 'Drama'); /* The Lord of the Rings */
-INSERT INTO ACTOR VALUES(10004, 'Harrison', 'Ford', '1942-07-13', 'M', 'American', 'Action'); /* Star Wars */
-INSERT INTO ACTOR VALUES(10005, 'Robin', 'Wright', '1966-04-08', 'F', 'American', 'Drama'); /* The Princess Bride */
-INSERT INTO ACTOR VALUES(10006, 'Brad', 'Pitt', '1963-12-18', 'M', 'American', 'Drama'); /* */
-INSERT INTO ACTOR VALUES(10007, 'Scarlett', 'Johansson', '1984-11-22', 'F', 'American', 'Drama'); /* */
-INSERT INTO ACTOR VALUES(10008, 'Cary', 'Elwes', '1969-11-04', 'M', 'American', 'Drama'); /* Robin Hood: Men in Tights */
-INSERT INTO ACTOR VALUES(10009, 'Natalie', 'Portman', '1981-06-09', 'F', 'American', 'Drama'); /* */
-INSERT INTO ACTOR VALUES(10010, 'Carrie', 'Fisher', '1956-10-21', 'F', 'American', 'Action'); /* Star Wars */
+INSERT INTO ACTOR VALUES(10001, 'Bill', 'Murray', '1950-09-21', 'M', 'American', '1973-01-01'); /* Caddyshack */
+INSERT INTO ACTOR VALUES(10002, 'Sigourney', 'Weaver', '1949-09-21', 'F', 'American', '1976-02-02'); /* Ghostbusters */
+INSERT INTO ACTOR VALUES(10003, 'Ian', 'McKellen', '1939-05-22', 'M', 'American', '1959-01-01'); /* The Lord of the Rings */
+INSERT INTO ACTOR VALUES(10004, 'Harrison', 'Ford', '1942-07-13', 'M', 'American', '1966-01-01'); /* Star Wars */
+INSERT INTO ACTOR VALUES(10005, 'Robin', 'Wright', '1966-04-08', 'F', 'American', '1983-01-01'); /* The Princess Bride */
+INSERT INTO ACTOR VALUES(10006, 'Brad', 'Pitt', '1963-12-18', 'M', 'American', '1987-01-01'); /* */
+INSERT INTO ACTOR VALUES(10007, 'Scarlett', 'Johansson', '1984-11-22', 'F', 'American', '1994-01-01'); /* */
+INSERT INTO ACTOR VALUES(10008, 'Cary', 'Elwes', '1969-11-04', 'M', 'American', '1979-01-01'); /* Robin Hood: Men in Tights */
+INSERT INTO ACTOR VALUES(10009, 'Natalie', 'Portman', '1981-06-09', 'F', 'American', '1992-01-01'); /* */
+INSERT INTO ACTOR VALUES(10010, 'Carrie', 'Fisher', '1956-10-21', 'F', 'American', '1973-01-01'); /* Star Wars */
 
 /* SCREENWRITER TABLE INSERT STATEMENTS */
-INSERT INTO SCREENWRITER VALUES(1, 'George', 'Lucas', '1944-05-14', 'M','American', 'Action'); /* Star Wars Ep. 4-6*/
-INSERT INTO SCREENWRITER VALUES(2, 'Lawrence', 'Kasdan', '1949-01-14', 'M', 'American', 'Action'); /*Star Wars Ep. 5-6*/
-INSERT INTO SCREENWRITER VALUES(3, 'Leigh', 'Brackett', '1915-12-07', 'F', 'American', 'Action'); /*Star Wars Ep. 5*/
-INSERT INTO SCREENWRITER VALUES(4, 'Fran', 'Walsh', '1959-01-10', 'F', 'New Zealander', 'Action'); /*Lord of the Rings*/
-INSERT INTO SCREENWRITER VALUES(5, 'Stephen', 'Sinclair', '1953-03-07', 'M', 'New Zealander', 'Action'); /*The Two Towers*/
-INSERT INTO SCREENWRITER VALUES(6, 'Arthur', 'Clark', '1917-12-16','M', 'British', 'Action'); /*2001: A Space Odyssey*/
-INSERT INTO SCREENWRITER VALUES(7, 'William', 'Goldman', '1931-08-12','M', 'American', 'Drama'); /*Princess Bride*/
-INSERT INTO SCREENWRITER VALUES(8, 'Evan', 'Chandler', '1944-01-25','M', 'American', 'Comedy'); /*Robin Hood*/
-INSERT INTO SCREENWRITER VALUES(9, 'Brian', 'Doyle-Murray', '1945-10-31','M', 'American', 'Comedy'); /*Caddyshack*/
-INSERT INTO SCREENWRITER VALUES(10, 'Dan', 'Akroyd', '1952-07-01','M', 'American', 'Comedy'); /*Ghostbusters*/
+INSERT INTO SCREENWRITER VALUES(1, 'George', 'Lucas', '1944-05-14', 'M','American', '1971-01-01'); /* Star Wars Ep. 4-6*/
+INSERT INTO SCREENWRITER VALUES(2, 'Lawrence', 'Kasdan', '1949-01-14', 'M', 'American', '1980-01-01'); /*Star Wars Ep. 5-6*/
+INSERT INTO SCREENWRITER VALUES(3, 'Leigh', 'Brackett', '1915-12-07', 'F', 'American', '1945-01-01'); /*Star Wars Ep. 5*/
+INSERT INTO SCREENWRITER VALUES(4, 'Fran', 'Walsh', '1959-01-10', 'F', 'New Zealander', '1983-01-01'); /*Lord of the Rings*/
+INSERT INTO SCREENWRITER VALUES(5, 'Stephen', 'Sinclair', '1953-03-07', 'M', 'New Zealander', '1993-01-01'); /*The Two Towers*/
+INSERT INTO SCREENWRITER VALUES(6, 'Arthur', 'Clark', '1917-12-16','M', 'British', '1946-01-01'); /*2001: A Space Odyssey*/
+INSERT INTO SCREENWRITER VALUES(7, 'William', 'Goldman', '1931-08-12','M', 'American', '1963-01-01'); /*Princess Bride*/
+INSERT INTO SCREENWRITER VALUES(8, 'Evan', 'Chandler', '1944-01-25','M', 'American', '1983-01-01'); /*Robin Hood*/
+INSERT INTO SCREENWRITER VALUES(9, 'Brian', 'Doyle-Murray', '1945-10-31','M', 'American', '1972-01-01'); /*Caddyshack*/
+INSERT INTO SCREENWRITER VALUES(10, 'Dan', 'Akroyd', '1952-07-01','M', 'American', '1971-01-01'); /*Ghostbusters*/
 
 /* WRITTEN_BY TABLE INSERT STATEMENTS */
 INSERT INTO WRITTEN_BY VALUES('Star Wars: Episode IV', '1977-05-25', 1);
@@ -252,5 +251,31 @@ INSERT INTO SONG VALUES('The Swordfight', 'Mark Knopfler',  '1987-11-12', 'Mark 
 INSERT INTO SONG VALUES('Men in Tights', 'Mel Brooks', '1994-02-15', 'Mel Brooks', 'Robin Hood: Men in Tights (Soundstrack)');
 INSERT INTO SONG VALUES('Im Alright' ,'Kenny Loggins' , '1980-07-07', 'Kenny Loggins', 'Caddyshack: Music from the Motion Picture Soundtrack');
 INSERT INTO SONG VALUES('Ghostbusters', 'Ray Parker Jr', '1984-05-27', 'Ray Parker Jr', 'Ghostbusters (Soundtrack)');
+
+
+
+
+
+
+/*
+**************************************
+* 			SAM'S QUERIES
+**************************************
+
+1. Get the average length of all movies directed by Peter Jackson,
+   assuming we do not know his d_ID.
+
+*/
+
+.print "Select the average length of movies' directed by the director of the first Lord of the Rings movie:\n"
+SELECT AVG(minutes) AS 'Average Length' FROM MOVIE WHERE m_director IN (SELECT m_director FROM MOVIE WHERE m_title = 'The Lord of the Rings: The Fellowship of the Ring');
+
+
+
+
+
+
+
+
 
 
