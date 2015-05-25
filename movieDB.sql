@@ -126,16 +126,16 @@ CREATE TABLE ACTED_IN(
 );
 
 /* DIRECTOR TABLE INSERT STATEMENTS */
-INSERT INTO DIRECTOR VALUES(1000, 'George', 'Lucas', '1944-5-14', 'M', 'American', '1971-3-11');
-INSERT INTO DIRECTOR VALUES(1001, 'Irvin', 'Kershner', '1923-4-29', 'M', 'American', '1961-3-26');
-INSERT INTO DIRECTOR VALUES(1002, 'Richard', 'Marquand', '1937-9-22', 'M', 'British', '1978-9-14');
+INSERT INTO DIRECTOR VALUES(1000, 'George', 'Lucas', '1944-5-14', 'M', 'American', '1971-03-11');
+INSERT INTO DIRECTOR VALUES(1001, 'Irvin', 'Kershner', '1923-4-29', 'M', 'American', '1961-03-26');
+INSERT INTO DIRECTOR VALUES(1002, 'Richard', 'Marquand', '1937-9-22', 'M', 'British', '1978-09-14');
 INSERT INTO DIRECTOR VALUES(1003, 'Peter', 'Jackson', '1961-10-31', 'M', 'New Zealander', '1987-12-11');
-INSERT INTO DIRECTOR VALUES(1004, 'Stanley', 'Kubrick', '1928-7-26', 'M', 'American', '1951-4-26');
-INSERT INTO DIRECTOR VALUES(1005, 'Rob', 'Reiner', '1947-3-6', 'M', 'American', '1984-3-2');
-INSERT INTO DIRECTOR VALUES(1006, 'Mel', 'Brooks', '1926-6-28', 'M', 'American', '1968-3-18');
-INSERT INTO DIRECTOR VALUES(1007, 'Harold', 'Ramis', '1944-11-21', 'M', 'American', '1980-7-25');
-INSERT INTO DIRECTOR VALUES(1008, 'Ivan', 'Reitman', '1946-10-27', 'M', 'Canadian', '1971-9-27');
-INSERT INTO DIRECTOR VALUES(1009, 'Joss', 'Whedon', '1964-6-23', 'M', 'American', '2005-8-22');
+INSERT INTO DIRECTOR VALUES(1004, 'Stanley', 'Kubrick', '1928-7-26', 'M', 'American', '1951-04-26');
+INSERT INTO DIRECTOR VALUES(1005, 'Rob', 'Reiner', '1947-3-6', 'M', 'American', '1984-03-02');
+INSERT INTO DIRECTOR VALUES(1006, 'Mel', 'Brooks', '1926-6-28', 'M', 'American', '1968-03-18');
+INSERT INTO DIRECTOR VALUES(1007, 'Harold', 'Ramis', '1944-11-21', 'M', 'American', '1980-07-25');
+INSERT INTO DIRECTOR VALUES(1008, 'Ivan', 'Reitman', '1946-10-27', 'M', 'Canadian', '1971-09-27');
+INSERT INTO DIRECTOR VALUES(1009, 'Joss', 'Whedon', '1964-6-23', 'M', 'American', '2005-08-22');
 
 /* MOVIE TABLE INSERT STATEMENTS */
 INSERT INTO MOVIE VALUES('Star Wars: Episode IV', '1977-05-25', 'Fantasy', 121, 'English', 1000, 'Lucasfilm Ltd', 'USA');
@@ -199,6 +199,7 @@ INSERT INTO ACTED_IN VALUES('Star Wars: Episode V', '1980-05-21', 10004);
 INSERT INTO ACTED_IN VALUES('Star Wars: Episode V', '1980-05-21', 10010);
 INSERT INTO ACTED_IN VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 10003);
 INSERT INTO ACTED_IN VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 10003);
+INSERT INTO ACTED_IN VALUES('Robin Hood: Men in Tights', '1993-07-28', 10008);
 
 /* LOCATION TABLE INSERT STATEMENTS */
 INSERT INTO LOCATION VALUES('USA', 'California', 'Santa Clarita'); /* Robin Hood */
@@ -262,18 +263,60 @@ INSERT INTO SONG VALUES('Ghostbusters', 'Ray Parker Jr', '1984-05-27', 'Ray Park
 * 			SAM'S QUERIES
 **************************************
 
-1. Get the average length of all movies directed by Peter Jackson,
-   assuming we do not know his d_ID.
+1. Select the average length of movies' directed by the director of the first Lord of the Rings movie
+
+2. Select the artist and the album of every song in any of the Star Wars movies
+
+3. Select the country, region, place, of all movies written by a screenwriter who has been active since 1980
+
+4. Select the first and last name of all actors who have not acted in a movie in the database
+
+5. Select the first and last name of all actors who have acted in a movie which was directed by a director who has been active since 1980
 
 */
 
-.print "Select the average length of movies' directed by the director of the first Lord of the Rings movie:\n"
-SELECT AVG(minutes) AS 'Average Length' FROM MOVIE WHERE m_director IN (SELECT m_director FROM MOVIE WHERE m_title = 'The Lord of the Rings: The Fellowship of the Ring');
+.print "\nSelect the average length of movies' directed by the director of the first Lord of the Rings movie:\n"
+SELECT AVG(minutes) AS 'Average Length' 
+FROM MOVIE 
+WHERE m_director IN (SELECT m_director 
+					 FROM MOVIE 
+					 WHERE m_title = 'The Lord of the Rings: The Fellowship of the Ring');
+
+
+.print "\nSelect the artist and the album of every song in any of the Star Wars movies:\n"
+SELECT song AS 'Song', s_artist AS 'Artist', album AS 'Album'
+FROM MOVIE_SONG, SONG 
+WHERE s_title = song AND movie LIKE('%Star Wars%');
+
+
+.print "\nSelect the country, region, place, of all movies written by a screenwriter who has been active since 1980:\n"
+SELECT country AS 'Country', place AS 'Place', region AS 'Region'
+FROM MOVIE_LOCATION L 
+WHERE L.movie IN(SELECT movie 
+				 FROM WRITTEN_BY W 
+				 WHERE writer IN (SELECT w_ID 
+				 				  FROM SCREENWRITER 
+				 				  WHERE w_active_from >= ('1980-01-01')));
+
+
+.print "\nSelect the first and last name of all actors who have not acted in a movie in the database:\n"
+SELECT a_fname AS 'First Name', a_lname AS 'Last Name' 
+FROM ACTOR 
+WHERE a_ID NOT IN(SELECT actor 
+	              FROM ACTED_IN);
 
 
 
-
-
+.print "\nSelect the first and last name of all actors who have acted in a movie which was\ndirected by a director who has been active since 1980:\n"
+SELECT a_fname AS 'First Name', a_lname AS 'Last Name'
+FROM ACTOR 
+WHERE a_ID IN(SELECT actor 
+			  FROM ACTED_IN 
+			  WHERE movie IN(SELECT m_title 
+			  				 FROM MOVIE 
+			  				 WHERE m_director IN(SELECT d_ID 
+			  				 					 FROM DIRECTOR 
+			  				 					 WHERE d_active_from <= '1980-12-31')));
 
 
 
