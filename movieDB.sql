@@ -208,9 +208,9 @@ INSERT INTO LOCATION VALUES('USA', 'California', 'Redwood National Park'); /* SW
 INSERT INTO LOCATION VALUES('USA', 'Florida', 'Davie'); /* Caddyshack */
 INSERT INTO LOCATION VALUES('Ireland', 'County Clare', 'Cliffs of Moher'); /* Princess Bride */
 INSERT INTO LOCATION VALUES('Scotland', 'Western Isles', 'Isel of Harris'); /* 2001 */
-INSERT INTO LOCATION VALUES('New Zeland', 'Waikato', 'Hinuera Valley'); /* Return of the King*/
-INSERT INTO LOCATION VALUES('New Zeland', 'Southern Alps', 'Mount Tasman'); /* Two Towers */
-INSERT INTO LOCATION VALUES('New Zeland', 'Otago', 'Queenstown'); /* Fellowship */
+INSERT INTO LOCATION VALUES('New Zealand', 'Waikato', 'Hinuera Valley'); /* Return of the King*/
+INSERT INTO LOCATION VALUES('New Zealand', 'Southern Alps', 'Mount Tasman'); /* Two Towers */
+INSERT INTO LOCATION VALUES('New Zealand', 'Otago', 'Queenstown'); /* Fellowship */
 INSERT INTO LOCATION VALUES('Tunisia', 'Jerba', 'Ajim'); /* SW IV */
 
 /* MOVIE_LOCATION INSERT STATEMENTS */
@@ -342,7 +342,7 @@ WHERE genre = 'Fantasy'
 ORDER BY m_release_date;
 
 .print "\nSelect the first and last name of each director who has directed more than one movie, as well as a count for the number of movies they have directed:\n"
-SELECT d_fname AS 'First Name', d_lname AS 'Last Name', COUNT(m_director) 
+SELECT d_fname AS 'First Name', d_lname AS 'Last Name', COUNT(m_director) AS '# of Movies'
 FROM DIRECTOR, MOVIE 
 WHERE d_ID = m_director AND d_ID IN (SELECT m_director 
 									 FROM MOVIE 
