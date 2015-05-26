@@ -1,4 +1,3 @@
-PRAGMA foreign_keys=1;
 .headers on
 .mode columns
 
@@ -254,8 +253,8 @@ INSERT INTO SONG VALUES('Im Alright' ,'Kenny Loggins' , '1980-07-07', 'Kenny Log
 INSERT INTO SONG VALUES('Ghostbusters', 'Ray Parker Jr', '1984-05-27', 'Ray Parker Jr', 'Ghostbusters (Soundtrack)');
 
 
-
-
+/* Enable foreign key constraints - keep here */
+PRAGMA foreign_keys=1;
 
 
 /*
