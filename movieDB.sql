@@ -336,17 +336,19 @@ WHERE a_ID IN(SELECT actor
 */
 
 .print "\nSelect all of the info for each movie where the genre is “Fantasy”, ordered by release date:\n"
-SELECT (*)
-FROM MOVIE
-WHERE genre = ‘Fantasy’
+SELECT * 
+FROM MOVIE 
+WHERE genre = 'Fantasy' 
 ORDER BY m_release_date;
 
 .print "\nSelect the first and last name of each director who has directed more than one movie, as well as a count for the number of movies they have directed:\n"
-SELECT d_fname AS 'First Name', d_lname AS 'Last Name', COUNT(m_director) AS '# of Movies'
-FROM DIRECTOR, MOVIE
-WHERE d_ID = m_director AND 1 < (SELECT COUNT(m_director) 
-				FROM DIRECTOR, MOVIE 
-				WHERE d_ID = m_director);
+SELECT d_fname AS 'First Name', d_lname AS 'Last Name', COUNT(m_director) 
+FROM DIRECTOR, MOVIE 
+WHERE d_ID = m_director AND d_ID IN (SELECT m_director 
+									 FROM MOVIE 
+									 GROUP BY m_director 
+									 HAVING COUNT(m_director) > 1) 
+GROUP BY m_director;
 
 .print "\nSelect the unique genres in the database and a count of how many movies are in that genre, arranged in reverse alphabetical order according to genre:\n"
 SELECT genre AS 'Genre', COUNT(m_title) AS '# of Movies'
@@ -357,7 +359,8 @@ ORDER BY genre DESC;
 .print "\nSelect first and last name and for every screenwriter who worked on a Lord of the Rings movie, ordered by last name first, then first name:\n"
 SELECT w_fname AS 'First Name', w_lname AS 'Last Name'
 FROM SCREENWRITER, WRITTEN_BY
-WHERE w_ID = writer AND movie LIKE(‘%Lord of the Rings%’)
+WHERE w_ID = writer AND movie LIKE('%Lord of the Rings%')
+GROUP BY w_ID
 ORDER BY w_lname, w_fname;
 
 .print "\nSelect first and last name and birthdate for every Actor in ascending order according to birthdate:\n"
