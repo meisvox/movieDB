@@ -420,3 +420,47 @@ print "\nSelect the number of actors from each nationality:\n"
 SELECT nationality, count(*)
 FROM ACTOR
 GROUP BY nationality;
+
+/*
+**************************************
+* 		       HUNTER QUERIES
+**************************************
+
+1. Select the count of all MOVIE_SONGs where the artist is 'John Williams' from Star Wars 
+
+2. Select all song release dates of SONGs from MOVIES released before 1980 and the associated movie release date sort by SONG release date
+
+3. Select all MOVIEs where there SONG with the word 'Swordfight' in the title
+
+4. Select all MOVIEs that 'Kenny Loggins' wrote SONGs for 
+
+5. Select all SONGs from any of the Star Wars movies released after 1980
+
+*/
+
+print "\Select the count of all MOVIE_SONGs where the artist is 'John Williams' from Star Wars:\n"
+Select COUNT(*)
+From MOVIE_SONG
+Where artist = 'John Williams' AND movie = 'Star Wars';
+
+print "\Select all songs and song release dates of SONGs from MOVIES released before 1980 and the associated movie release date sort by SONG release date:\n"
+Select song, song_release, m_release_date
+From MOVIE, MOVIE_SONG
+Where movie = m_title AND m_release_date <= ('1980-01-01')
+Order by song_release;
+
+print "\Select all MOVIEs where there SONG with the word 'Swordfight' in the title:\n"
+Select m_title
+From MOVIE, MOVIE_SONG
+Where movie = m_title AND song like '%Swordfight%';
+
+print "\Select all MOVIEs that 'Kenny Loggins' wrote SONGs for:\n"
+Select m_title
+From MOVIE, MOVIE_SONG
+Where movie = m.title AND artist = 'Kenny Loggins';
+
+print "\Select all SONGs from any of the Star Wars movies released after 1980 in descending order:\n"
+Select song
+From MOVIE, MOVIE_SONG
+Where movie = m_title AND movie like '%Star Wars%' AND m_release_date >= ('1981-01-01')
+Order by song_release DESC;
