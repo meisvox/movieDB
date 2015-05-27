@@ -1,6 +1,6 @@
 .headers on
 .mode columns
-
+.width 30
 .open movieDB.db
 
 DROP TABLE MOVIE;
