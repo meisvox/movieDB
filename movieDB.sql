@@ -368,3 +368,55 @@ SELECT a_fname AS 'First Name', a_lname AS 'Last Name', a_DOB AS 'Date of Birth'
 FROM ACTOR
 ORDER BY a_DOB;
 
+/*
+**************************************
+* 		     MICHAEL'S QUERIES
+**************************************
+
+1. Select all movies that Brad Pitt acted in, in alphabetical order by movie title
+
+2. Select all of the Lord of the Rings films and their repsective locations, order by ascending movie release date
+
+3. Select the movie name, director's name, and length of the longest movie
+
+4. Select the count of Star Wars films and the total length of all the Star Wars films (in minutes)
+
+5. Select the number of actors from each nationality
+
+*/
+
+print "\nSelect all movies that Brad Pitt acted in, in alphabetical order by movie title:\n"
+SELECT movie 
+FROM ACTED_IN
+WHERE actor IN(
+		SELECT a_ID 
+		FROM ACTOR
+		WHERE a_fname = 'Brad' AND a_lname = 'Pitt' AND a_DOB = '1963-12-18')
+ORDER BY movie;
+
+print "\nSelect all of the Lord of the Rings films and their repsective locations, order by ascending movie release date:\n"
+SELECT movie, place, region, country 
+FROM MOVIE_LOCATION
+WHERE movie LIKE('%Lord of the Rings%')
+ORDER BY movie_release;
+
+print "\nSelect the average length of all movies (in minutes)\n"
+SELECT avg(minutes)
+FROM MOVIE;
+
+print "\nSelect the movie name, director's name, and length of the longest movie\n"
+SELECT m_title, d_fname, d_lname, minutes 
+FROM MOVIE, DIRECTOR 
+WHERE d_ID = m_director AND minutes IN(
+					SELECT max(minutes)
+					FROM MOVIE);
+					
+print "\nSelect the count of Star Wars films and the total length of all the Star Wars films (in minutes):\n"
+SELECT count(*), sum(minutes)
+FROM MOVIE
+WHERE m_title LIKE('%Star Wars%');
+
+print "\nSelect the number of actors from each nationality:\n"
+SELECT nationality, count(*)
+FROM ACTOR
+GROUP BY nationality;
