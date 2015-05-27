@@ -135,6 +135,8 @@ INSERT INTO DIRECTOR VALUES(1006, 'Mel', 'Brooks', '1926-6-28', 'M', 'American',
 INSERT INTO DIRECTOR VALUES(1007, 'Harold', 'Ramis', '1944-11-21', 'M', 'American', '1980-07-25');
 INSERT INTO DIRECTOR VALUES(1008, 'Ivan', 'Reitman', '1946-10-27', 'M', 'Canadian', '1971-09-27');
 INSERT INTO DIRECTOR VALUES(1009, 'Joss', 'Whedon', '1964-6-23', 'M', 'American', '2005-08-22');
+INSERT INTO DIRECTOR VALUES(1010, 'David', 'Fincher', '1962-8-28', 'M', 'American', '1922-5-22');
+
 
 /* MOVIE TABLE INSERT STATEMENTS */
 INSERT INTO MOVIE VALUES('Star Wars: Episode IV', '1977-05-25', 'Fantasy', 121, 'English', 1000, 'Lucasfilm Ltd', 'USA');
@@ -148,6 +150,7 @@ INSERT INTO MOVIE VALUES('The Princess Bride', '1987-09-25', 'Adventure', 98, 'E
 INSERT INTO MOVIE VALUES('Robin Hood: Men in Tights', '1993-07-28', 'Comedy', 104, 'English', 1006, 'Mel Brooks', 'USA');
 INSERT INTO MOVIE VALUES('Caddyshack', '1980-07-25', 'Comedy', 98, 'English', 1007, 'Douglas Kenney', 'USA');
 INSERT INTO MOVIE VALUES('Ghostbusters', '1984-06-08', 'Comedy', 107, 'English', 1008, 'Ivan Reitman', 'USA');
+INSERT INTO MOVIE VALUES('Fight Club', '1999-10-15', 'Drama', 139, 'English', 1010, 'Art Linson', 'USA');
 
 /* ACTOR TABLE INSERT STATEMENTS */
 INSERT INTO ACTOR VALUES(10001, 'Bill', 'Murray', '1950-09-21', 'M', 'American', '1973-01-01'); /* Caddyshack */
@@ -199,6 +202,7 @@ INSERT INTO ACTED_IN VALUES('Star Wars: Episode V', '1980-05-21', 10010);
 INSERT INTO ACTED_IN VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 10003);
 INSERT INTO ACTED_IN VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 10003);
 INSERT INTO ACTED_IN VALUES('Robin Hood: Men in Tights', '1993-07-28', 10008);
+INSERT INTO ACTED_IN VALUES('Fight Club', '1999-10-15', 10006);
 
 /* LOCATION TABLE INSERT STATEMENTS */
 INSERT INTO LOCATION VALUES('USA', 'California', 'Santa Clarita'); /* Robin Hood */
@@ -335,7 +339,7 @@ WHERE a_ID IN(SELECT actor
 
 */
 
-.print "\nSelect all of the info for each movie where the genre is “Fantasy”, ordered by release date:\n"
+.print "\nSelect all of the info for each movie where the genre is 'Fantasy', ordered by release date:\n"
 SELECT * 
 FROM MOVIE 
 WHERE genre = 'Fantasy' 
@@ -385,7 +389,7 @@ ORDER BY a_DOB;
 
 */
 
-print "\nSelect all movies that Brad Pitt acted in, in alphabetical order by movie title:\n"
+.print "\nSelect all movies that Brad Pitt acted in, in alphabetical order by movie title:\n"
 SELECT movie 
 FROM ACTED_IN
 WHERE actor IN(
@@ -417,9 +421,9 @@ FROM MOVIE
 WHERE m_title LIKE('%Star Wars%');
 
 .print "\nSelect the number of actors from each nationality:\n"
-SELECT nationality, count(*)
+SELECT a_nationality, count(*)
 FROM ACTOR
-GROUP BY nationality;
+GROUP BY a_nationality;
 
 
 /*
@@ -440,9 +444,9 @@ GROUP BY nationality;
 */
 
 .print "\nDirectors active before 1975-01-01:\n" 	
-SELECT d_fname, d_lname FROM DIRECTOR WHERE d_active_from < '1975-01-01'
+SELECT d_fname, d_lname FROM DIRECTOR WHERE d_active_from < '1975-01-01';
 
-.print "\nDirectors who have directed more than one movie:\n";
+.print "\nDirectors who have directed more than one movie:\n"
 SELECT d_fname, d_lname, COUNT(MOVIE.m_director)FROM DIRECTOR, MOVIE 
 	WHERE DIRECTOR.d_ID = MOVIE.m_director 
 	GROUP BY d_ID HAVING COUNT(MOVIE.m_director) > 1;
