@@ -368,6 +368,3 @@ SELECT a_fname AS 'First Name', a_lname AS 'Last Name', a_DOB AS 'Date of Birth'
 FROM ACTOR
 ORDER BY a_DOB;
 
-
-lk
-
