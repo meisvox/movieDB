@@ -219,9 +219,9 @@ INSERT INTO MOVIE_LOCATION VALUES('Star Wars: Episode V', '1980-05-21', 'Norway'
 INSERT INTO MOVIE_LOCATION VALUES('Star Wars: Episode VI', '1983-05-25', 'USA', 'California', 'Redwood National Park');
 INSERT INTO MOVIE_LOCATION VALUES('Ghostbusters', '1984-06-08', 'USA', 'New York', 'Brooklyn');
 INSERT INTO MOVIE_LOCATION VALUES('Caddyshack', '1980-07-25', 'USA', 'Florida', 'Davie');
-INSERT INTO MOVIE_LOCATION VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 'New Zeland', 'Otago', 'Queenstown');
-INSERT INTO MOVIE_LOCATION VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 'New Zeland', 'Southern Alps', 'Mount Tasman');
-INSERT INTO MOVIE_LOCATION VALUES('The Lord of the Rings: The Return of the King', '2003-12-17', 'New Zeland', 'Waikato', 'Hinuera Valley');
+INSERT INTO MOVIE_LOCATION VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 'New Zealand', 'Otago', 'Queenstown');
+INSERT INTO MOVIE_LOCATION VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 'New Zealand', 'Southern Alps', 'Mount Tasman');
+INSERT INTO MOVIE_LOCATION VALUES('The Lord of the Rings: The Return of the King', '2003-12-17', 'New Zealand', 'Waikato', 'Hinuera Valley');
 INSERT INTO MOVIE_LOCATION VALUES('2001: A Space Odessey', '1968-04-03', 'Scotland', 'Western Isles', 'Isel of Harris');
 INSERT INTO MOVIE_LOCATION VALUES('The Princess Bride', '1987-09-25', 'Ireland', 'County Clare', 'Cliffs of Moher');
 INSERT INTO MOVIE_LOCATION VALUES('Robin Hood: Men in Tights', '1993-07-28', 'USA', 'California', 'Santa Clarita');
@@ -329,7 +329,7 @@ WHERE a_ID IN(SELECT actor
 
 3. Select the unique genres in the database and a count of how many movies are in that genre, arranged in reverse alphabetical order according to genre
 
-4. Select first and last name and for every screenwriter who worked on a Lord of the Rings movie, ordered by last name first, then first name
+4. Select first and last name for every screenwriter who worked on a Lord of the Rings movie, ordered by last name first, then first name
 
 5. Select first and last name and birthdate for every Actor in ascending order according to birthdate
 
@@ -356,7 +356,7 @@ FROM MOVIE
 GROUP BY genre
 ORDER BY genre DESC;
 
-.print "\nSelect first and last name and for every screenwriter who worked on a Lord of the Rings movie, ordered by last name first, then first name:\n"
+.print "\nSelect first and last name for every screenwriter who worked on a Lord of the Rings movie, ordered by last name first, then first name:\n"
 SELECT w_fname AS 'First Name', w_lname AS 'Last Name'
 FROM SCREENWRITER, WRITTEN_BY
 WHERE w_ID = writer AND movie LIKE('%Lord of the Rings%')
