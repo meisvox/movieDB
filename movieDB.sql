@@ -1,6 +1,6 @@
 .headers on
 .mode columns
-
+.width 30
 .open movieDB.db
 
 DROP TABLE MOVIE;
@@ -135,6 +135,8 @@ INSERT INTO DIRECTOR VALUES(1006, 'Mel', 'Brooks', '1926-6-28', 'M', 'American',
 INSERT INTO DIRECTOR VALUES(1007, 'Harold', 'Ramis', '1944-11-21', 'M', 'American', '1980-07-25');
 INSERT INTO DIRECTOR VALUES(1008, 'Ivan', 'Reitman', '1946-10-27', 'M', 'Canadian', '1971-09-27');
 INSERT INTO DIRECTOR VALUES(1009, 'Joss', 'Whedon', '1964-6-23', 'M', 'American', '2005-08-22');
+INSERT INTO DIRECTOR VALUES(1010, 'David', 'Fincher', '1962-8-28', 'M', 'American', '1922-5-22');
+
 
 /* MOVIE TABLE INSERT STATEMENTS */
 INSERT INTO MOVIE VALUES('Star Wars: Episode IV', '1977-05-25', 'Fantasy', 121, 'English', 1000, 'Lucasfilm Ltd', 'USA');
@@ -148,6 +150,7 @@ INSERT INTO MOVIE VALUES('The Princess Bride', '1987-09-25', 'Adventure', 98, 'E
 INSERT INTO MOVIE VALUES('Robin Hood: Men in Tights', '1993-07-28', 'Comedy', 104, 'English', 1006, 'Mel Brooks', 'USA');
 INSERT INTO MOVIE VALUES('Caddyshack', '1980-07-25', 'Comedy', 98, 'English', 1007, 'Douglas Kenney', 'USA');
 INSERT INTO MOVIE VALUES('Ghostbusters', '1984-06-08', 'Comedy', 107, 'English', 1008, 'Ivan Reitman', 'USA');
+INSERT INTO MOVIE VALUES('Fight Club', '1999-10-15', 'Drama', 139, 'English', 1010, 'Art Linson', 'USA');
 
 /* ACTOR TABLE INSERT STATEMENTS */
 INSERT INTO ACTOR VALUES(10001, 'Bill', 'Murray', '1950-09-21', 'M', 'American', '1973-01-01'); /* Caddyshack */
@@ -199,6 +202,7 @@ INSERT INTO ACTED_IN VALUES('Star Wars: Episode V', '1980-05-21', 10010);
 INSERT INTO ACTED_IN VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 10003);
 INSERT INTO ACTED_IN VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 10003);
 INSERT INTO ACTED_IN VALUES('Robin Hood: Men in Tights', '1993-07-28', 10008);
+INSERT INTO ACTED_IN VALUES('Fight Club', '1999-10-15', 10006);
 
 /* LOCATION TABLE INSERT STATEMENTS */
 INSERT INTO LOCATION VALUES('USA', 'California', 'Santa Clarita'); /* Robin Hood */
@@ -335,7 +339,7 @@ WHERE a_ID IN(SELECT actor
 
 */
 
-.print "\nSelect all of the info for each movie where the genre is “Fantasy”, ordered by release date:\n"
+.print "\nSelect all of the info for each movie where the genre is 'Fantasy', ordered by release date:\n"
 SELECT * 
 FROM MOVIE 
 WHERE genre = 'Fantasy' 
@@ -385,7 +389,7 @@ ORDER BY a_DOB;
 
 */
 
-print "\nSelect all movies that Brad Pitt acted in, in alphabetical order by movie title:\n"
+.print "\nSelect all movies that Brad Pitt acted in, in alphabetical order by movie title:\n"
 SELECT movie 
 FROM ACTED_IN
 WHERE actor IN(
@@ -394,31 +398,32 @@ WHERE actor IN(
 		WHERE a_fname = 'Brad' AND a_lname = 'Pitt' AND a_DOB = '1963-12-18')
 ORDER BY movie;
 
-print "\nSelect all of the Lord of the Rings films and their repsective locations, order by ascending movie release date:\n"
+.print "\nSelect all of the Lord of the Rings films and their repsective locations, order by ascending movie release date:\n"
 SELECT movie, place, region, country 
 FROM MOVIE_LOCATION
 WHERE movie LIKE('%Lord of the Rings%')
 ORDER BY movie_release;
 
-print "\nSelect the average length of all movies (in minutes)\n"
+.print "\nSelect the average length of all movies (in minutes)\n"
 SELECT avg(minutes)
 FROM MOVIE;
 
-print "\nSelect the movie name, director's name, and length of the longest movie\n"
+.print "\nSelect the movie name, director's name, and length of the longest movie\n"
 SELECT m_title, d_fname, d_lname, minutes 
 FROM MOVIE, DIRECTOR 
 WHERE d_ID = m_director AND minutes IN(
 					SELECT max(minutes)
 					FROM MOVIE);
 					
-print "\nSelect the count of Star Wars films and the total length of all the Star Wars films (in minutes):\n"
+.print "\nSelect the count of Star Wars films and the total length of all the Star Wars films (in minutes):\n"
 SELECT count(*), sum(minutes)
 FROM MOVIE
 WHERE m_title LIKE('%Star Wars%');
 
-print "\nSelect the number of actors from each nationality:\n"
-SELECT nationality, count(*)
+.print "\nSelect the number of actors from each nationality:\n"
+SELECT a_nationality, count(*)
 FROM ACTOR
+<<<<<<< HEAD
 GROUP BY nationality;
 
 /*
@@ -464,3 +469,49 @@ Select song
 From MOVIE, MOVIE_SONG
 Where movie = m_title AND movie like '%Star Wars%' AND m_release_date >= ('1981-01-01')
 Order by song_release DESC;
+=======
+GROUP BY a_nationality;
+
+
+/*
+**************************************
+* 		     ANDREW'S QUERIES
+**************************************
+
+1. Directors active before 1975-01-01
+
+2. Directors who have directed more than one movie
+
+3. Actors who have appeared in a movie which genre is 'Fantasy' and have been released after 1980-01-01 ordered by amount of movies they have appeared in
+
+4. Directors who are the same nationality as actor 'Bill' 'Murray'
+
+5. Directors who have directed a movie which genre is 'Fantasy'
+
+*/
+
+.print "\nDirectors active before 1975-01-01:\n" 	
+SELECT d_fname, d_lname FROM DIRECTOR WHERE d_active_from < '1975-01-01';
+
+.print "\nDirectors who have directed more than one movie:\n"
+SELECT d_fname, d_lname, COUNT(MOVIE.m_director)FROM DIRECTOR, MOVIE 
+	WHERE DIRECTOR.d_ID = MOVIE.m_director 
+	GROUP BY d_ID HAVING COUNT(MOVIE.m_director) > 1;
+
+.print "\nActors who have appeared in a movie which genre is 'Fantasy' \nand have been released after 1980-01-01 ordered by amount of \nmovies they have appeared in:\n"
+SELECT a_fname, a_lname, COUNT(acted_in.actor) FROM ACTOR, ACTED_IN, MOVIE 
+	WHERE ACTOR.a_ID = ACTED_IN.actor AND MOVIE.m_title = ACTED_IN.movie AND 
+		MOVIE.m_release_date = ACTED_IN.movie_release AND 
+		MOVIE.genre = 'Fantasy' AND MOVIE.m_release_date > '1980%' 
+	GROUP BY ACTOR.a_fname ORDER BY COUNT(ACTED_IN.movie);
+	
+.print "\nDirectors who are the same nationality as actor 'Bill' 'Murray':\n"
+SELECT d_fname,d_lname FROM DIRECTOR 
+	WHERE d_nationality =(SELECT a_nationality FROM ACTOR 
+		WHERE a_fname = 'Bill' AND a_lname = 'Murray');
+		
+.print "\nDirectors who have directed a movie which genre is 'Fantasy':\n"
+SELECT d_fname,d_lname FROM DIRECTOR, MOVIE 
+	WHERE DIRECTOR.d_ID = MOVIE.m_director AND MOVIE.genre = 'Fantasy' 
+	GROUP BY d_fname,d_lname;
+>>>>>>> 2d4c074b97ad9a0da1d6267b31df6d34c6245f5c
