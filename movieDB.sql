@@ -233,7 +233,7 @@ INSERT INTO MOVIE_LOCATION VALUES('Robin Hood: Men in Tights', '1993-07-28', 'US
 /* MOVIE_SONG TABLE INSERT STATEMENTS */
 INSERT INTO MOVIE_SONG VALUES('Star Wars: Episode IV', '1977-05-25', 'The Last Battle', '1977-05-05', 'John Williams');
 INSERT INTO MOVIE_SONG VALUES('Star Wars: Episode V', '1980-05-21', 'The City in the Clouds', '1979-12-27', 'John Williams');
-INSERT INTO MOVIE_SONG VALUES('Star Wars: Episode VI', '1983-05-25', 'Han Solo Returns', '1983-01-17', 'John WIlliams');
+INSERT INTO MOVIE_SONG VALUES('Star Wars: Episode VI', '1983-05-25', 'Han Solo Returns', '1983-01-17', 'John Williams');
 INSERT INTO MOVIE_SONG VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 'A Knife in the Dark', '2001-11-20', 'Howard Shore');
 INSERT INTO MOVIE_SONG VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 'Isengard Unleashed', '2002-12-10', 'Howard Shore');
 INSERT INTO MOVIE_SONG VALUES('The Lord of the Rings: The Return of the King', '2003-12-17', 'Ash and Smoke', '2003-11-25', 'Howard Shore');
@@ -246,7 +246,7 @@ INSERT INTO MOVIE_SONG VALUES('Ghostbusters', '1984-06-08', 'Ghostbusters', '198
 /* SONG TABLE INSERT STATEMENTS */
 INSERT INTO SONG VALUES('The Last Battle', 'John Williams', '1977-05-05', 'George Lucas', 'Star Wars: Original Motion Picture Soundtrack');
 INSERT INTO SONG VALUES('The City in the Clouds', 'John Williams', '1979-12-27', 'John Williams', 'Star Wars: The Empire Strikes Back: Original Motion Picture Soundtrack');
-INSERT INTO SONG VALUES('Han Solo Returns', 'John WIlliams', '1983-01-17', 'John WIlliams', 'Star Wars: Return of the Jedi: Original Motion Picture Soundtrack');
+INSERT INTO SONG VALUES('Han Solo Returns', 'John Williams', '1983-01-17', 'John Williams', 'Star Wars: Return of the Jedi: Original Motion Picture Soundtrack');
 INSERT INTO SONG VALUES('A Knife in the Dark', 'Howard Shore', '2001-11-20', 'Howard Shore', 'The Lord of the Rings: The Fellowship of the Ring: Original Motion Picture Soundtrack');
 INSERT INTO SONG VALUES('Isengard Unleashed', 'Howard Shore', '2002-12-10', 'Howard Shore', 'The Lord of the Rings: The Two Towers: Original Motion Picture Soundtrack');
 INSERT INTO SONG VALUES('Ash and Smoke', 'Howard Shore', '2003-11-25', 'Howard Shore', 'The Lord of the Rings: The Return of the King: Original Motion Picture Soundtrack');
@@ -390,7 +390,7 @@ ORDER BY a_DOB;
 */
 
 .print "\nSelect all movies that Brad Pitt acted in, in alphabetical order by movie title:\n"
-SELECT movie 
+SELECT movie AS 'Movie'
 FROM ACTED_IN
 WHERE actor IN(
 		SELECT a_ID 
@@ -399,36 +399,35 @@ WHERE actor IN(
 ORDER BY movie;
 
 .print "\nSelect all of the Lord of the Rings films and their repsective locations, order by ascending movie release date:\n"
-SELECT movie, place, region, country 
+SELECT movie AS 'Movie', place AS 'Place', region AS 'Region', country AS 'Country'
 FROM MOVIE_LOCATION
 WHERE movie LIKE('%Lord of the Rings%')
 ORDER BY movie_release;
 
 .print "\nSelect the average length of all movies (in minutes)\n"
-SELECT avg(minutes)
+SELECT avg(minutes) AS 'Average Length in Minutes'
 FROM MOVIE;
 
 .print "\nSelect the movie name, director's name, and length of the longest movie\n"
-SELECT m_title, d_fname, d_lname, minutes 
+SELECT m_title AS 'Movie', d_fname AS 'First', d_lname AS 'Last', minutes AS 'Minutes'
 FROM MOVIE, DIRECTOR 
 WHERE d_ID = m_director AND minutes IN(
 					SELECT max(minutes)
 					FROM MOVIE);
 					
 .print "\nSelect the count of Star Wars films and the total length of all the Star Wars films (in minutes):\n"
-SELECT count(*), sum(minutes)
+SELECT count(*) AS 'Count', sum(minutes) AS 'Total Length'
 FROM MOVIE
 WHERE m_title LIKE('%Star Wars%');
 
 .print "\nSelect the number of actors from each nationality:\n"
-SELECT a_nationality, count(*)
+SELECT a_nationality AS 'Nationality', count(*) AS 'Count'
 FROM ACTOR
-<<<<<<< HEAD
-GROUP BY nationality;
+GROUP BY a_nationality;
 
 /*
 **************************************
-* 		       HUNTER QUERIES
+* 		   HUNTER'S QUERIES
 **************************************
 
 1. Select the count of all MOVIE_SONGs where the artist is 'John Williams' from Star Wars 
@@ -443,35 +442,32 @@ GROUP BY nationality;
 
 */
 
-print "\Select the count of all MOVIE_SONGs where the artist is 'John Williams' from Star Wars:\n"
-Select COUNT(*)
-From MOVIE_SONG
-Where artist = 'John Williams' AND movie = 'Star Wars';
+.print "\nSelect the count of all MOVIE_SONGs where the artist is 'John Williams' from Star Wars:\n"
+SELECT COUNT(*) AS 'Count'
+FROM MOVIE_SONG
+WHERE artist = 'John Williams' AND movie LIKE('%Star Wars%');
 
-print "\Select all songs and song release dates of SONGs from MOVIES released before 1980 and the associated movie release date sort by SONG release date:\n"
-Select song, song_release, m_release_date
-From MOVIE, MOVIE_SONG
-Where movie = m_title AND m_release_date <= ('1980-01-01')
-Order by song_release;
+.print "\nSelect all songs and song release dates of SONGs from MOVIES released before 1980 and the associated movie release date sort by SONG release date:\n"
+SELECT song AS 'Song', song_release AS 'Song Release', m_release_date AS 'Movie Release'
+FROM MOVIE, MOVIE_SONG
+WHERE movie = m_title AND m_release_date <= ('1980-01-01')
+ORDER BY song_release;
 
-print "\Select all MOVIEs where there SONG with the word 'Swordfight' in the title:\n"
-Select m_title
-From MOVIE, MOVIE_SONG
-Where movie = m_title AND song like '%Swordfight%';
+.print "\nSelect all MOVIEs where there SONG with the word 'Swordfight' in the title:\n"
+SELECT m_title AS 'Movie'
+FROM MOVIE, MOVIE_SONG
+WHERE movie = m_title AND song LIKE '%Swordfight%';
 
-print "\Select all MOVIEs that 'Kenny Loggins' wrote SONGs for:\n"
-Select m_title
-From MOVIE, MOVIE_SONG
-Where movie = m.title AND artist = 'Kenny Loggins';
+.print "\nSelect all MOVIEs that 'Kenny Loggins' wrote SONGs for:\n"
+SELECT m_title AS 'Movie'
+FROM MOVIE, MOVIE_SONG
+WHERE movie = m_title AND artist = 'Kenny Loggins';
 
-print "\Select all SONGs from any of the Star Wars movies released after 1980 in descending order:\n"
-Select song
-From MOVIE, MOVIE_SONG
-Where movie = m_title AND movie like '%Star Wars%' AND m_release_date >= ('1981-01-01')
-Order by song_release DESC;
-=======
-GROUP BY a_nationality;
-
+.print "\nSelect all SONGs from any of the Star Wars movies released after 1980 in descending order:\n"
+SELECT song AS 'Song'
+FROM MOVIE, MOVIE_SONG
+WHERE movie = m_title AND movie LIKE '%Star Wars%' AND m_release_date >= ('1981-01-01')
+ORDER BY song_release DESC;
 
 
 /*
@@ -492,27 +488,42 @@ GROUP BY a_nationality;
 */
 
 .print "\nDirectors active before 1975-01-01:\n" 	
-SELECT d_fname, d_lname FROM DIRECTOR WHERE d_active_from < '1975-01-01';
+SELECT d_fname AS 'First', d_lname AS 'Last'
+FROM DIRECTOR 
+WHERE d_active_from < '1975-01-01';
 
 .print "\nDirectors who have directed more than one movie:\n"
-SELECT d_fname, d_lname, COUNT(MOVIE.m_director)FROM DIRECTOR, MOVIE 
-	WHERE DIRECTOR.d_ID = MOVIE.m_director 
-	GROUP BY d_ID HAVING COUNT(MOVIE.m_director) > 1;
+SELECT d_fname AS 'First', d_lname AS 'Last', COUNT(MOVIE.m_director) AS 'Count'
+FROM DIRECTOR, MOVIE 
+WHERE DIRECTOR.d_ID = MOVIE.m_director 
+GROUP BY d_ID 
+HAVING COUNT(MOVIE.m_director) > 1;
 
 .print "\nActors who have appeared in a movie which genre is 'Fantasy' \nand have been released after 1980-01-01 ordered by amount of \nmovies they have appeared in:\n"
-SELECT a_fname, a_lname, COUNT(acted_in.actor) FROM ACTOR, ACTED_IN, MOVIE 
-	WHERE ACTOR.a_ID = ACTED_IN.actor AND MOVIE.m_title = ACTED_IN.movie AND 
-		MOVIE.m_release_date = ACTED_IN.movie_release AND 
-		MOVIE.genre = 'Fantasy' AND MOVIE.m_release_date > '1980%' 
-	GROUP BY ACTOR.a_fname ORDER BY COUNT(ACTED_IN.movie);
+SELECT a_fname AS 'First', a_lname AS 'Last', COUNT(acted_in.actor) AS 'Count'
+FROM ACTOR, ACTED_IN, MOVIE 
+WHERE ACTOR.a_ID = ACTED_IN.actor AND MOVIE.m_title = ACTED_IN.movie AND MOVIE.m_release_date = ACTED_IN.movie_release AND MOVIE.genre = 'Fantasy' AND MOVIE.m_release_date > '1980%' 
+GROUP BY ACTOR.a_fname 
+ORDER BY COUNT(ACTED_IN.movie);
 	
 .print "\nDirectors who are the same nationality as actor 'Bill' 'Murray':\n"
-SELECT d_fname,d_lname FROM DIRECTOR 
-	WHERE d_nationality =(SELECT a_nationality FROM ACTOR 
-		WHERE a_fname = 'Bill' AND a_lname = 'Murray');
+SELECT d_fname AS 'First', d_lname AS 'Last'
+FROM DIRECTOR 
+WHERE d_nationality =(SELECT a_nationality 
+					  FROM ACTOR 
+					  WHERE a_fname = 'Bill' AND a_lname = 'Murray');
 		
 .print "\nDirectors who have directed a movie which genre is 'Fantasy':\n"
-SELECT d_fname,d_lname FROM DIRECTOR, MOVIE 
-	WHERE DIRECTOR.d_ID = MOVIE.m_director AND MOVIE.genre = 'Fantasy' 
-	GROUP BY d_fname,d_lname;
->>>>>>> 2d4c074b97ad9a0da1d6267b31df6d34c6245f5c
+SELECT d_fname AS 'First',d_lname AS 'Last'
+FROM DIRECTOR, MOVIE 
+WHERE DIRECTOR.d_ID = MOVIE.m_director AND MOVIE.genre = 'Fantasy' 
+GROUP BY d_fname,d_lname;
+
+
+
+
+
+
+
+
+
