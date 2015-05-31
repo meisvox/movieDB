@@ -34,7 +34,7 @@ CREATE TABLE MOVIE(
 	m_director INT NOT NULL CHECK(m_director > 0 AND m_director <= 99999),
 	m_producer VARCHAR(30),
 	origin VARCHAR(20),
-	PRIMARY KEY(m_title, m_release_date)
+	PRIMARY KEY(m_title, m_release_date),
 	FOREIGN KEY(m_director) REFERENCES DIRECTOR(d_ID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
