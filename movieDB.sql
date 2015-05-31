@@ -539,14 +539,14 @@ SELECT d_fname AS 'First', d_lname AS 'Last'
 FROM DIRECTOR 
 WHERE d_active_from < '1975-01-01';
 
-.print "\nDirectors who have directed more than one movie:\n"
+.print "\nDirectors and the count of movies they have directed who have directed more than one movie:\n"
 SELECT d_fname AS 'First', d_lname AS 'Last', COUNT(MOVIE.m_director) AS 'Count'
 FROM DIRECTOR, MOVIE 
 WHERE DIRECTOR.d_ID = MOVIE.m_director 
 GROUP BY d_ID 
 HAVING COUNT(MOVIE.m_director) > 1;
 
-.print "\nActors who have appeared in a movie which genre is 'Fantasy' \nand have been released after 1980-01-01 ordered by amount of \nmovies they have appeared in:\n"
+.print "\nActors and the amount of movies they have appeared in who have appeared in a movie which genre\nis 'Fantasy' and have been released after 1980-01-01 ordered by amount of \nmovies they have appeared in:\n"
 SELECT a_fname AS 'First', a_lname AS 'Last', COUNT(acted_in.actor) AS 'Count'
 FROM ACTOR, ACTED_IN, MOVIE 
 WHERE ACTOR.a_ID = ACTED_IN.actor AND MOVIE.m_title = ACTED_IN.movie AND MOVIE.m_release_date = ACTED_IN.movie_release AND MOVIE.genre = 'Fantasy' AND MOVIE.m_release_date > '1980%' 
