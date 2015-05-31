@@ -155,12 +155,12 @@ INSERT INTO MOVIE VALUES('Fight Club', '1999-10-15', 'Drama', 139, 'English', 10
 /* ACTOR TABLE INSERT STATEMENTS */
 INSERT INTO ACTOR VALUES(10001, 'Bill', 'Murray', '1950-09-21', 'M', 'American', '1973-01-01'); /* Caddyshack */
 INSERT INTO ACTOR VALUES(10002, 'Sigourney', 'Weaver', '1949-09-21', 'F', 'American', '1976-02-02'); /* Ghostbusters */
-INSERT INTO ACTOR VALUES(10003, 'Ian', 'McKellen', '1939-05-22', 'M', 'American', '1959-01-01'); /* The Lord of the Rings */
+INSERT INTO ACTOR VALUES(10003, 'Ian', 'McKellen', '1939-05-22', 'M', 'British', '1959-01-01'); /* The Lord of the Rings */
 INSERT INTO ACTOR VALUES(10004, 'Harrison', 'Ford', '1942-07-13', 'M', 'American', '1966-01-01'); /* Star Wars */
 INSERT INTO ACTOR VALUES(10005, 'Robin', 'Wright', '1966-04-08', 'F', 'American', '1983-01-01'); /* The Princess Bride */
 INSERT INTO ACTOR VALUES(10006, 'Brad', 'Pitt', '1963-12-18', 'M', 'American', '1987-01-01'); /* */
 INSERT INTO ACTOR VALUES(10007, 'Scarlett', 'Johansson', '1984-11-22', 'F', 'American', '1994-01-01'); /* */
-INSERT INTO ACTOR VALUES(10008, 'Cary', 'Elwes', '1969-11-04', 'M', 'American', '1979-01-01'); /* Robin Hood: Men in Tights */
+INSERT INTO ACTOR VALUES(10008, 'Cary', 'Elwes', '1969-11-04', 'M', 'British', '1979-01-01'); /* Robin Hood: Men in Tights */
 INSERT INTO ACTOR VALUES(10009, 'Natalie', 'Portman', '1981-06-09', 'F', 'American', '1992-01-01'); /* */
 INSERT INTO ACTOR VALUES(10010, 'Carrie', 'Fisher', '1956-10-21', 'F', 'American', '1973-01-01'); /* Star Wars */
 
@@ -211,7 +211,7 @@ INSERT INTO LOCATION VALUES('Norway', 'Finse', 'Hardangerjøkulen Glacier'); /* 
 INSERT INTO LOCATION VALUES('USA', 'California', 'Redwood National Park'); /* SW VI */
 INSERT INTO LOCATION VALUES('USA', 'Florida', 'Davie'); /* Caddyshack */
 INSERT INTO LOCATION VALUES('Ireland', 'County Clare', 'Cliffs of Moher'); /* Princess Bride */
-INSERT INTO LOCATION VALUES('Scotland', 'Western Isles', 'Isel of Harris'); /* 2001 */
+INSERT INTO LOCATION VALUES('Scotland', 'Western Isles', 'Isle of Harris'); /* 2001 */
 INSERT INTO LOCATION VALUES('New Zealand', 'Waikato', 'Hinuera Valley'); /* Return of the King*/
 INSERT INTO LOCATION VALUES('New Zealand', 'Southern Alps', 'Mount Tasman'); /* Two Towers */
 INSERT INTO LOCATION VALUES('New Zealand', 'Otago', 'Queenstown'); /* Fellowship */
@@ -226,7 +226,7 @@ INSERT INTO MOVIE_LOCATION VALUES('Caddyshack', '1980-07-25', 'USA', 'Florida', 
 INSERT INTO MOVIE_LOCATION VALUES('The Lord of the Rings: The Fellowship of the Ring', '2001-12-19', 'New Zealand', 'Otago', 'Queenstown');
 INSERT INTO MOVIE_LOCATION VALUES('The Lord of the Rings: The Two Towers', '2002-12-18', 'New Zealand', 'Southern Alps', 'Mount Tasman');
 INSERT INTO MOVIE_LOCATION VALUES('The Lord of the Rings: The Return of the King', '2003-12-17', 'New Zealand', 'Waikato', 'Hinuera Valley');
-INSERT INTO MOVIE_LOCATION VALUES('2001: A Space Odessey', '1968-04-03', 'Scotland', 'Western Isles', 'Isel of Harris');
+INSERT INTO MOVIE_LOCATION VALUES('2001: A Space Odessey', '1968-04-03', 'Scotland', 'Western Isles', 'Isle of Harris');
 INSERT INTO MOVIE_LOCATION VALUES('The Princess Bride', '1987-09-25', 'Ireland', 'County Clare', 'Cliffs of Moher');
 INSERT INTO MOVIE_LOCATION VALUES('Robin Hood: Men in Tights', '1993-07-28', 'USA', 'California', 'Santa Clarita');
 
