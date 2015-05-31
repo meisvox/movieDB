@@ -426,11 +426,13 @@ ORDER BY a_DOB;
 
 2. Select all of the Lord of the Rings films and their repsective locations, order by ascending movie release date
 
-3. Select the movie name, director's name, and length of the longest movie
+3. Select the average length of all movies (in minutes)
 
-4. Select the count of Star Wars films and the total length of all the Star Wars films (in minutes)
+4. Select the movie name, director's name, and length of the longest movie
 
-5. Select the number of actors from each nationality
+5. Select the count of Star Wars films and the total length of all the Star Wars films (in minutes)
+
+6. Select the number of actors from each nationality
 
 */
 
