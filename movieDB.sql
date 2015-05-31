@@ -266,17 +266,60 @@ PRAGMA foreign_keys=1;
 * 			SAM'S QUERIES
 **************************************
 
-1. Select the average length of movies' directed by the director of the first Lord of the Rings movie
+1. Select all movies not prodcued by the producer of Star Wars
 
-2. Select the artist and the album of every song in any of the Star Wars movies
+2. Select all movies released in 2001
 
-3. Select the country, region, place, of all movies written by a screenwriter who has been active since 1980
+3. Select all movies shot in the USA released between 1970 and 2000
 
-4. Select the first and last name of all actors who have not acted in a movie in the database
+4. Select all movies by the writer and director of Lord of the Rings
 
-5. Select the first and last name of all actors who have acted in a movie which was directed by a director who has been active since 1980
+5. Select the average length of movies' directed by the director of the first Lord of the Rings movie
+
+6. Select the artist and the album of every song in any of the Star Wars movies
+
+7. Select the country, region, place, of all movies written by a screenwriter who has been active since 1980
+
+8. Select the first and last name of all actors who have not acted in a movie in the database
+
+9. Select the first and last name of all actors who have acted in a movie which was directed by a director who has been active since 1980
 
 */
+
+.print "\nSelect all movies not prodcued by the producer of Star Wars:\n"
+SELECT m_title AS 'Movie' 
+FROM MOVIE 
+WHERE m_producer 
+NOT IN(SELECT m_producer 
+       FROM MOVIE 
+       WHERE m_title LIKE('%Star Wars%'));
+
+
+.print "\nSelect all movies released in 2001:\n"
+SELECT m_title AS 'Movie' 
+FROM MOVIE 
+WHERE m_release_date LIKE('2001%');
+
+
+.print "\nSelect all movies shot in the USA released between 1970 and 2000:\n"
+SELECT movie AS 'Movie' 
+FROM MOVIE_LOCATION 
+WHERE country = 'USA' AND movie IN(SELECT m_title 
+								   FROM MOVIE 
+								   WHERE m_release_date > '1970-01-01' AND m_release_date < '2000-01-01');
+
+
+.print "\nSelect all movies by the writer and director of Lord of the Rings:\n"
+SELECT m_title AS 'Movie' 
+FROM MOVIE, WRITTEN_BY
+WHERE m_director IN(SELECT m_director 
+				    FROM MOVIE 
+				    WHERE m_title LIKE('%Lord of the Rings%')) 
+AND writer IN(SELECT writer 
+			  FROM WRITTEN_BY 
+			  WHERE movie LIKE('%Lord of the Rings%')) 
+GROUP BY m_title;
+
 
 .print "\nSelect the average length of movies' directed by the director of the first Lord of the Rings movie:\n"
 SELECT AVG(minutes) AS 'Average Length' 
@@ -320,6 +363,8 @@ WHERE a_ID IN(SELECT actor
 			  				 WHERE m_director IN(SELECT d_ID 
 			  				 					 FROM DIRECTOR 
 			  				 					 WHERE d_active_from <= '1980-12-31')));
+
+
 
 
 /*
@@ -518,9 +563,6 @@ SELECT d_fname AS 'First',d_lname AS 'Last'
 FROM DIRECTOR, MOVIE 
 WHERE DIRECTOR.d_ID = MOVIE.m_director AND MOVIE.genre = 'Fantasy' 
 GROUP BY d_fname,d_lname;
-
-
-
 
 
 
